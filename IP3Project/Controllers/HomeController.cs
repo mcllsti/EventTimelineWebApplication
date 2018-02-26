@@ -36,9 +36,9 @@ namespace IP3Project.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Help()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Help Page.";
 
             return View();
         }
