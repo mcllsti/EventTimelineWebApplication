@@ -18,3 +18,14 @@ C:\Users\Daryl\Desktop\Ip3\Daryl\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.A
 C:\Users\Daryl\Desktop\Ip3\Daryl\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.AssemblyInfo.cs
 C:\Users\Daryl\Desktop\Ip3\Daryl\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.dll
 C:\Users\Daryl\Desktop\Ip3\Daryl\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.pdb
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\bin\Debug\netcoreapp2.0\IP3Project.deps.json
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\bin\Debug\netcoreapp2.0\IP3Project.runtimeconfig.json
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\bin\Debug\netcoreapp2.0\IP3Project.runtimeconfig.dev.json
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\bin\Debug\netcoreapp2.0\IP3Project.dll
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\bin\Debug\netcoreapp2.0\IP3Project.pdb
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.csprojResolveAssemblyReference.cache
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.csproj.CoreCompileInputs.cache
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.AssemblyInfoInputs.cache
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.AssemblyInfo.cs
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.dll
+C:\Users\Daryl\Desktop\Ip3\master\IP3Project\obj\Debug\netcoreapp2.0\IP3Project.pdb

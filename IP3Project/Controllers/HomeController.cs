@@ -32,10 +32,6 @@ namespace IP3Project.Controllers
                 model.timelines.Add(new TimelineViewModel(x.Title,x.CreationTimeStamp,x.Id));
             }
 
-
-            
-
-
             return View(model);
         }
 

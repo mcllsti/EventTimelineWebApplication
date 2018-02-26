@@ -9,20 +9,22 @@
     ViewData["Title"] = "About";
     ViewData["Message"] = "Your application description page.";
 }
+<br>
+<br>
+
+@Html.ActionLink("CREATE NEW TIMELINE", "Create",null, null,  new { @class = "btn btn-primary btn-large" })
 
 
 
-
-
-@{ 
+@{
     //DISPLAYS DYNAMIC TIMELINE CONTENT
-    foreach(var x in Model.timelines)
+    foreach (var x in Model.timelines)
     {
         <div class="gray">
-             @x.Id <br>
-             @x.Title; <br>
-             @x.CreationTimeStamp  <br>
-             @Html.ActionLink("Delete", "Delete", new {Id = x.Id }) 
+            @x.Id <br>
+            @x.Title; <br>
+            @x.CreationTimeStamp  <br>
+            @Html.ActionLink("Delete", "Delete", new { Id = x.Id }, new { @class = "btn btn-primary btn-large" })    @Html.ActionLink("Edit", "Edit", new { Id = x.Id }, new { @class = "btn btn-primary btn-large" })
         </div>
     }
 
