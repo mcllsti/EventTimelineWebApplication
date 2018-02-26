@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IP3Project", "IP3Project\IP3Project.csproj", "{2A9972E0-3EAF-433F-900A-D86F222CAE04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A9972E0-3EAF-433F-900A-D86F222CAE04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A9972E0-3EAF-433F-900A-D86F222CAE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A9972E0-3EAF-433F-900A-D86F222CAE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A9972E0-3EAF-433F-900A-D86F222CAE04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
