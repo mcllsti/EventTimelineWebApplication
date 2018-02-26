@@ -26,6 +26,13 @@
     margin: 15px
 }
 
+.gray {
+    background-color: lightgrey;
+    border: 1px solid green;
+    padding: 25px;
+    margin: 25px;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
