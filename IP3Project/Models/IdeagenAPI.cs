@@ -47,7 +47,7 @@ namespace IP3Project.Models
 
 
 
-        public IRestResponse PutRequest(RestRequest request, putviewmodel x)
+        public IRestResponse PutRequest(RestRequest request, PutViewModel x)
         {
             //sets up the client and the base URL
             var client = new RestClient();
@@ -84,7 +84,7 @@ namespace IP3Project.Models
             return client;
         }
 
-        private putviewmodel SetupPutRequestAuthorizations(putviewmodel x)
+        private PutViewModel SetupPutRequestAuthorizations(PutViewModel x)
         {
             x.TenantId = TenantId;
             x.AuthToken = AuthToken;

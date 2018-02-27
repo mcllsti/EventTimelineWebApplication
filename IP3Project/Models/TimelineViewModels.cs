@@ -17,19 +17,11 @@ namespace IP3Project.Models
 
     }
 
-    public class putviewmodel
-    {
-        public string AuthToken { get; set; }
-        public string TenantId { get; set; }
 
-    }
 
-    public class DeleteViewModel : putviewmodel
+    public class DeleteViewModel : PutViewModel
     {
         public string TimelineId { get; set; }
-
-
-
 
     }
 
