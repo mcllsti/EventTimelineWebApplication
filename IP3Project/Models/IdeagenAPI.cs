@@ -14,9 +14,9 @@ namespace IP3Project.Models
     public class IdeagenAPI
     {
 
-        const string BaseUrl = "https://gcu.ideagen-development.com";
-        private string AuthToken = "3dbd6fb2-caa0-4083-b286-6544baf2a248";
-        private string TenantId = "Team16";
+        private const string BaseUrl = "https://gcu.ideagen-development.com";
+        private const string AuthToken = "3dbd6fb2-caa0-4083-b286-6544baf2a248";
+        private const string TenantId = "Team16";
     
         /// <summary>
         /// Sets up a basic client object with the base url

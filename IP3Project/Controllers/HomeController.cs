@@ -46,7 +46,6 @@ namespace IP3Project.Controllers
         {
 
             var request = new RestRequest("Timeline/GetTimelines"); //setting up the request params
-
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
 
             var resultsDTO = JsonConvert.DeserializeObject<List<Timeline>>(response.Content); //Deserializes the results from the response
