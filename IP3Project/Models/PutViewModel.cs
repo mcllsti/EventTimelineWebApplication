@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace IP3Project.Models
 {
+    /// <summary>
+    /// Abstract class that all ViewModels for PUT methods will inherit from
+    /// </summary>
     public abstract class PutViewModel
     {
         public string AuthToken { get; set; }
