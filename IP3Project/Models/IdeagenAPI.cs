@@ -46,17 +46,22 @@ namespace IP3Project.Models
 
 
 
-
+        /// <summary>
+        /// Executes a Put Request to the API
+        /// </summary>
+        /// <param name="request">RestRequest Object that has had the endpoint set</param>
+        /// <param name="x">Object that has had data set to be passed into the request body</param>
+        /// <returns>String content of the response for output</returns>
         public string PutRequest(RestRequest request, PutViewModel x)
         {
             //sets up the client and the base URL
             var client = new RestClient();
             client = SetupClientURL(client);
 
+            //Setting the authtoken and tenantID in private method
             x = SetupPutRequestAuthorizations(x);
 
             //Set appropriate request properties
-
             request.Method = Method.PUT;
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(x);
@@ -70,7 +75,7 @@ namespace IP3Project.Models
 
 
 
-
+        //UTILITY REGION OF PRIVATE METHODS
         #region Utility
 
         /// <summary>
@@ -84,6 +89,11 @@ namespace IP3Project.Models
             return client;
         }
 
+        /// <summary>
+        /// Sets the AuthToken and TenantId for use in the body of a PUT
+        /// </summary>
+        /// <param name="x">PutViewModel to have properties set</param>
+        /// <returns>PutViewModel with properties set</returns>
         private PutViewModel SetupPutRequestAuthorizations(PutViewModel x)
         {
             x.TenantId = TenantId;
@@ -92,6 +102,11 @@ namespace IP3Project.Models
             return x;
         }
 
+        /// <summary>
+        /// Sets the AuthToken and TenantId to headers in a GET 
+        /// </summary>
+        /// <param name="request">RestRequest object to have headers set</param>
+        /// <returns>RestRequest with authorization headers set</returns>
         private RestRequest SetupGetRequestAuthorizations(RestRequest request)
         {
             request.AddHeader("AuthToken", AuthToken);
@@ -105,7 +120,8 @@ namespace IP3Project.Models
 
 
 
-
+        //ALL THIS CODE MAY BE USED LATER
+        //IF DEVELOPMENT IS FINISHED THEN DELETE THIS REGION
         #region JUNKCODE
 
         /// <summary>
