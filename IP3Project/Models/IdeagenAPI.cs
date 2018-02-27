@@ -34,8 +34,8 @@ namespace IP3Project.Models
 
             //Set appropriate request properties
             request.Method = Method.GET;
-            request.AddHeader("AuthToken", AuthToken);
-            request.AddHeader("TenantId", TenantId);
+            request = SetupGetRequestAuthorizations(request);
+
 
 
             IRestResponse response = client.Execute(request); //execures request 
@@ -47,14 +47,13 @@ namespace IP3Project.Models
 
 
 
-        public IRestResponse PutRequest(RestRequest request, Object x)
+        public IRestResponse PutRequest(RestRequest request, putviewmodel x)
         {
             //sets up the client and the base URL
             var client = new RestClient();
             client = SetupClientURL(client);
 
-            TrySetProperty(x, "AuthToken", AuthToken);
-            TrySetProperty(x, "TenantId", TenantId);
+            x = SetupPutRequestAuthorizations(x);
 
             //Set appropriate request properties
 
@@ -62,12 +61,14 @@ namespace IP3Project.Models
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(x);
 
-
             IRestResponse response = client.Execute(request); //execures request 
 
             return response;
 
         }
+
+
+
 
 
         #region Utility
@@ -83,13 +84,51 @@ namespace IP3Project.Models
             return client;
         }
 
+        private putviewmodel SetupPutRequestAuthorizations(putviewmodel x)
+        {
+            x.TenantId = TenantId;
+            x.AuthToken = AuthToken;
+
+            return x;
+        }
+
+        private RestRequest SetupGetRequestAuthorizations(RestRequest request)
+        {
+            request.AddHeader("AuthToken", AuthToken);
+            request.AddHeader("TenantId", TenantId);
+
+            return request;
+        }
+
+
+        #endregion
+
+
+
+
+        #region JUNKCODE
+
+        /// <summary>
+        /// Author: Mehmet Ataş
+        /// Source: https://stackoverflow.com/questions/16962727/how-to-set-properties-on-a-generic-entity?rq=1
+        /// Lisence: Free Use
+        /// 
+        /// Code Snipped that will try to set a specified property of a generic object. 
+        /// Main use is setting knowen authtoken and tenantid properies for POST methods
+        /// </summary>
+        /// <param name="obj">Generic Object</param>
+        /// <param name="property">String name of property to set</param>
+        /// <param name="value">Value of property to set</param>
         private void TrySetProperty(object obj, string property, object value)
         {
+
+            // TrySetProperty(x, "AuthToken", AuthToken);
+            // TrySetProperty(x, "TenantId", TenantId);
             var prop = obj.GetType().GetProperty(property, BindingFlags.Public | BindingFlags.Instance);
             if (prop != null && prop.CanWrite)
                 prop.SetValue(obj, value, null);
         }
-
         #endregion
+
     }
 }
