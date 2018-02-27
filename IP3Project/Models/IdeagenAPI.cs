@@ -47,7 +47,7 @@ namespace IP3Project.Models
 
 
 
-        public IRestResponse PutRequest(RestRequest request, PutViewModel x)
+        public string PutRequest(RestRequest request, PutViewModel x)
         {
             //sets up the client and the base URL
             var client = new RestClient();
@@ -63,7 +63,7 @@ namespace IP3Project.Models
 
             IRestResponse response = client.Execute(request); //execures request 
 
-            return response;
+            return response.Content;
 
         }
 
