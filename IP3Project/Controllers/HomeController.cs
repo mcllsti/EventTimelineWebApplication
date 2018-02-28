@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using IP3Project.Models;
 using RestSharp;
 using Newtonsoft.Json;
+using IP3Project.Classes;
 
 namespace IP3Project.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IActionResult Index()
         {
@@ -31,14 +32,14 @@ namespace IP3Project.Controllers
 
         public IActionResult About()
         {
-            
+            ViewData["Message"] = "About Page";
 
             return View();
         }
 
         public IActionResult Help()
         {
-            ViewData["Message"] = "Help Page.";
+            ViewData["Message"] = "Help Page";
 
             return View();
         }
