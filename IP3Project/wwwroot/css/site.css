@@ -10,33 +10,15 @@
     padding-right: 15px
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%
-}
-
 /* QR code generator */
 #qrCode {
     margin: 15px
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none
-    }
-}
-
 .navbar {
     background-color: #eaeaea;
     box-shadow: 0px 3px 5px #747474;
+    border: none;
 }
 
 .navbar ul {
@@ -48,17 +30,50 @@
 }
 
 .logoImg {
-    height: 25px;
-    width: auto;
+    width: 30px;
+    height: auto;
+    display: block;
 }
 
 .logoImg:hover {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .pageContent {
     text-align: center;
 
+}
+
+.timelineRegister {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+.pageHeading {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%);
+}
+
+#heroImg {
+    top: 0;
+    background-image: url("/images/heroImage.jpg");
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.bannerImg {
+    max-width: 600px;
+    height: auto;
 }
 
 footer {
