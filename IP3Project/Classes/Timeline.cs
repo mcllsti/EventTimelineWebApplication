@@ -8,8 +8,8 @@ namespace IP3Project.Classes
     public class Timeline
     {
         public string Id { get; set; }
-        public string TimelineTitle { get; set; }
-        public string CreationTimestamp { get; set; }
+        public string Title { get; set; }
+        public string CreationTimeStamp { get; set; }
         public bool IsDeleted { get; set; }
 
     }

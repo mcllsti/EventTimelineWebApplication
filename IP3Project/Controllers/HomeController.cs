@@ -20,13 +20,6 @@ namespace IP3Project.Controllers
             return View();
         }
 
-        public IActionResult Timelines()
-        {
-            ViewData["Message"] = "Timelines";
-
-            return View();
-        }
-
         public IActionResult About()
         {
             ViewData["Message"] = "About Page";

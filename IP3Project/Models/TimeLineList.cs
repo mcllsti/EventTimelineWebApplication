@@ -1,6 +1,7 @@
 ﻿using IP3Project.Classes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace IP3Project.Models
                     
@@ -25,6 +26,21 @@ namespace IP3Project.Models
     /// </summary>
     public class DeleteViewModel : PutViewModel
     {
+        public string TimelineId { get; set; }
+
+    }
+
+
+    /// <summary>
+    /// CreateViewModel will add timelines 
+    /// </summary>
+    public class CreateViewModel : PutViewModel
+    {
+        [Required]
+        [StringLength(30, ErrorMessage = "Title too long. Must be under 30 characters")]
+        [Display(Name = "Timeline Name")]
+        public string Title { get; set; }
+
         public string TimelineId { get; set; }
 
     }

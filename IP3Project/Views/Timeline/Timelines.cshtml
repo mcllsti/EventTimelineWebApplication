@@ -1,0 +1,38 @@
+﻿@model TimelineList
+
+@{
+    ViewData["Title"] = "Timelines";
+}
+
+<!--This view is the main view which will hold the "TimelineRegister" partial view, if any timelines exist-->
+
+<div class="row">
+    <div class="pageContent">
+        <h1>Timelines</h1>
+    </div>
+
+    @{
+
+        if (Model.timelines.Count == 0)
+        {
+            <div id="partialTimelineRegister">
+                <h4>You have not created a timeline yet! You can create one now!</h4>
+                @{
+                    Html.RenderPartial("/Views/Timeline/_CreateTimeline.cshtml");
+                }
+            </div>
+        }
+        else
+        {
+
+            <div>
+                @{
+                    Html.RenderPartial("/Views/Timeline/_TimelineRegister.cshtml");
+                }
+            </div>
+
+        }
+    }
+
+
+</div>
