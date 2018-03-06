@@ -12,6 +12,5 @@ namespace IP3Project.Models
     {
         public string AuthToken { get; set; }
         public string TenantId { get; set; }
-
     }
 }

@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 
 namespace IP3Project.Models
 {
-    /// <summary>
-    /// Wrapper Class that bridges the IdeagenAPI and RestSharp togither for ease of use and scaleability
-    /// Main purpose for encapsulation
-    /// </summary>
     public class IdeagenAPI
     {
 
         private const string BaseUrl = "https://gcu.ideagen-development.com";
         private const string AuthToken = "3dbd6fb2-caa0-4083-b286-6544baf2a248";
         private const string TenantId = "Team16";
-    
+
 
 
         /// <summary>

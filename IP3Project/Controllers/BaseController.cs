@@ -1,11 +1,9 @@
-﻿using System;
+﻿using IP3Project.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IP3Project.Models;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using RestSharp;
 
 namespace IP3Project.Controllers
 {

@@ -1,31 +1,25 @@
-﻿@model TimelineList;
-
-
-
-
-
-@{
-    //VIEWBAGS
-    ViewData["Title"] = "About";
-    ViewData["Message"] = "Your application description page.";
+﻿@{
+    ViewData["Title"] = "Welcome";
+    Layout = null;
 }
-<br>
-<br>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
 
-@Html.ActionLink("CREATE NEW TIMELINE", "Create",null, null,  new { @class = "btn btn-primary btn-large" })
-
-
-
-@{
-    //DISPLAYS DYNAMIC TIMELINE CONTENT
-    foreach (var x in Model.timelines)
-    {
-        <div class="gray">
-            @x.Id <br>
-            @x.Title; <br>
-            @x.CreationTimeStamp  <br>
-            @Html.ActionLink("Delete", "Delete", new { Id = x.Id }, new { @class = "btn btn-primary btn-large" })    @Html.ActionLink("Edit", "Edit", new { Id = x.Id }, new { @class = "btn btn-primary btn-large" })
+<body style="padding:0px !important">
+    <div id="wrapper">
+        <div id="heroImg">
+            <div class="pageHeading">
+                <img class="bannerImg" src="~/images/AyrtekBannerWhite.png" alt="AyrTek" />
+                <div class="container text-center">
+                    <h1>Welcome</h1>
+                    <p>To AyrTek's Timeline Web Application</p>
+                    @Html.ActionLink("Continue", "Timelines", "Timeline", null, new { @class = "btn btn-primary btn-large" })
+                </div>
+            </div>
         </div>
-    }
+    </div>
+</body>
 
-}
+

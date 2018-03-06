@@ -20,5 +20,11 @@
     },
     // Optionally generate .map file
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/lib/jquery-ui/jquery-ui.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery-ui/jquery-ui.js"
+    ]
   }
 ]
