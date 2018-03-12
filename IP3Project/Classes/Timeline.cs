@@ -11,6 +11,7 @@ namespace IP3Project.Classes
         public string Title { get; set; }
         public string CreationTimeStamp { get; set; }
         public bool IsDeleted { get; set; }
+        public List<Event> Events { get; set; }
 
     }
 }
