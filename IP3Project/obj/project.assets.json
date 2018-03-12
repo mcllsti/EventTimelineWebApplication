@@ -13229,7 +13229,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Daryl\\.nuget\\packages\\": {},
+    "C:\\Users\\gamac\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
@@ -13239,18 +13239,18 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Daryl\\Desktop\\Ip3\\IP3Project\\IP3Project.csproj",
+      "projectUniqueName": "C:\\Users\\gamac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3master\\ip3project\\IP3Project\\IP3Project.csproj",
       "projectName": "IP3Project",
-      "projectPath": "C:\\Users\\Daryl\\Desktop\\Ip3\\IP3Project\\IP3Project.csproj",
-      "packagesPath": "C:\\Users\\Daryl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Daryl\\Desktop\\Ip3\\IP3Project\\obj\\",
+      "projectPath": "C:\\Users\\gamac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3master\\ip3project\\IP3Project\\IP3Project.csproj",
+      "packagesPath": "C:\\Users\\gamac\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gamac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3master\\ip3project\\IP3Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Daryl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gamac\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
@@ -13259,7 +13259,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\localnuget\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

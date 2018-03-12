@@ -39,18 +39,13 @@
                         <td class="text-center"> @x.CreationTimeStamp</td>
                         <td class="text-right">
 
-
                             <div class="dropdown">
-                                <button class="dropbtn glyphicon glyphicon-cog"></button>
+                                <div class="dropbtn glyphicon glyphicon-cog"></div>
                                 <div class="dropdown-content">
                                     @Html.ActionLink("Delete", "Delete", new { Id = x.Id })
                                     @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id }, new { @class = "modal-link" })
                                 </div>
                             </div>
-
-
-
-
                         </td>
                     </tr>
 
