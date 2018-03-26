@@ -1,0 +1,46 @@
+﻿@model List<IP3Project.Models.TimelineEventsViewModel>
+
+<h4>TimelineEventsViewModel</h4>
+<hr />
+@foreach (TimelineEventsViewModel x in Model)
+{
+    <div>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => x.Id)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => x.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => x.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => x.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => x.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => x.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => x.tDateTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => x.tDateTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => x.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => x.Location)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}

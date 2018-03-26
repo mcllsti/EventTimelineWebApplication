@@ -33,21 +33,21 @@
                 foreach (var x in Model.timelines)
                 {
 
-                    <tr class="clickable-tr">
-                        <!--The entire <tr> needs to be made clickable so we can go to the timeline, can do this with jQuery/JS.-->
-                        <td scope="row">@x.Title </td>
-                        <td class="text-center"> @x.CreationTimeStamp</td>
-                        <td class="text-right">
+                <tr class="clickable-tr">
+                    <!--The entire <tr> needs to be made clickable so we can go to the timeline, can do this with jQuery/JS.-->
+                    <td scope="row">@Html.ActionLink(x.Title, "EventRegister", "Event", new { Id = x.Id }, null)</td>
+                    <td class="text-center"> @x.CreationTimeStamp</td>
+                    <td class="text-right">
 
-                            <div class="dropdown">
-                                <div class="dropbtn glyphicon glyphicon-cog"></div>
-                                <div class="dropdown-content">
-                                    @Html.ActionLink("Delete", "Delete", new { Id = x.Id })
-                                    @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id }, new { @class = "modal-link" })
-                                </div>
+                        <div class="dropdown">
+                            <div class="dropbtn glyphicon glyphicon-cog"></div>
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Delete", "Delete", new { Id = x.Id })
+                                @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id }, new { @class = "modal-link" })
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                </tr>
 
 
             }
