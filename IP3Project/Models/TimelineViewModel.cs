@@ -46,11 +46,11 @@ namespace IP3Project.Models
     /// </summary>
     public class TimelineList
     {
-        public List<Timeline> timelines { get; set; }
+        public List<Timeline> Timelines { get; set; }
 
         public TimelineList()
         {
-            timelines = new List<Timeline>();
+            Timelines = new List<Timeline>();
         }
 
     }
@@ -67,7 +67,7 @@ namespace IP3Project.Models
 
 
     /// <summary>
-    /// CreateEditViewModel will add timelines 
+    /// CreateEditViewModel will add Timelines 
     /// </summary>
     public class CreateEditViewModel : PutViewModel
     {

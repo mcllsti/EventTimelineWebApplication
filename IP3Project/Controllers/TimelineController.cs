@@ -17,7 +17,7 @@ namespace IP3Project.Controllers
         //public ActionResult Timelines()
         //{
         //    TimelineList model = new TimelineList();
-        //    model = GetAllTimelines(model);
+        //    model = GetEvents(model);
 
         //    return View(model);
         //}
@@ -31,7 +31,7 @@ namespace IP3Project.Controllers
             TimelineList model = new TimelineList();
             model = GetAllTimelines(model);
 
-            var results = from s in model.timelines
+            var results = from s in model.Timelines
                           select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -54,7 +54,7 @@ namespace IP3Project.Controllers
                     break;
             }
 
-            model.timelines = results.ToList();
+            model.Timelines = results.ToList();
             return View(model);
         }
 
@@ -100,7 +100,7 @@ namespace IP3Project.Controllers
         }
 
         /// <summary>
-        /// Deletes a Timeline from the API and returns to the list of timelines
+        /// Deletes a Timeline from the API and returns to the list of Timelines
         /// </summary>
         /// <param name="Id">String Id of timeline to be deleted</param>
         /// <returns>Redirects to Index Action</returns>
@@ -126,9 +126,9 @@ namespace IP3Project.Controllers
         #region Utility
 
         /// <summary>
-        /// Makes a request to the API and returns a populated view model with all timelines 
+        /// Makes a request to the API and returns a populated view model with all Timelines 
         /// </summary>
-        /// <param name="model">TimelineList viewmodel to be populated with a list of timelines</param>
+        /// <param name="model">TimelineList viewmodel to be populated with a list of Timelines</param>
         /// <returns>Populated TimelineList viewmodel</returns>
         private TimelineList GetAllTimelines(TimelineList model)
         {
@@ -141,7 +141,7 @@ namespace IP3Project.Controllers
             //Populates the viewmodel with relevent results
             foreach (Timeline x in resultsDTO)
             {
-                model.timelines.Add(x);
+                model.Timelines.Add(x);
             }
 
             return model;

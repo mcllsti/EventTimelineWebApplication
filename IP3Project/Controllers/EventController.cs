@@ -14,31 +14,23 @@ namespace IP3Project.Controllers
         public IActionResult EventRegister(string Id )
         {
 
-            List<Timeline> list = new List<Timeline>();
-            list = GetAllTimelines(list,Id);
-
-            List<Event> model = new List<Event>();
-            model = list.First().TimelineEvents;
-
-
-
-
+            EventList model = GetEvents(Id);
 
             return PartialView("_EventRegister", model);
 
         }
 
-        private List<Timeline> GetAllTimelines(List<Timeline> model, string Id)
+        private EventList GetEvents(string Id)
         {
 
             var request = new RestRequest("Timeline/GetAllTimelinesAndEvent"); //setting up the request params
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
 
-            var resultsDTO = JsonConvert.DeserializeObject<AllTimelines>(response.Content); //Deserializes the results from the response
-
+            var resultsDTO = JsonConvert.DeserializeObject<TimelineList>(response.Content); //Deserializes the results from the response
+            EventList model = new EventList();
             foreach(Timeline x in resultsDTO.Timelines.Where(x => x.Id.Equals(Id)))
             {
-                model.Add(x);
+                model.Events = x.TimelineEvents;
             }
 
             return model;

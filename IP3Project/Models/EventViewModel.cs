@@ -8,33 +8,16 @@ namespace IP3Project.Models
 
 {
 
-    public class AllTimelines
+    public class EventList
     {
-        public List<Timeline> Timelines { get; set; }
+        public List<Event> Events { get; set; }
 
-        public AllTimelines()
+        public EventList()
         {
-            Timelines = new List<Timeline>();
+            Events = new List<Event>();
         }
 
     }
-
-
-    //public class TimelineEventViewModel
-    //{
-    //    public string Title { get; set; }
-
-    //    public string CreationTimeStamp { get; set; }
-    //    public string Id { get; set; }
-    //    public List<Event> TimelineEvents { get; set; }
-
-    //    public TimelineEventViewModel()
-    //    {
-    //        TimelineEvents= new List<Event>();
-    //    }
-
-    //}
-
 
     public class Event
     {
