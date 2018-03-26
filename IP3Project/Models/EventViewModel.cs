@@ -14,4 +14,6 @@ namespace IP3Project.Models
         public string EventLocation { get; set; }
 
     }
+
+
 }

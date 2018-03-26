@@ -94,4 +94,20 @@ namespace IP3Project.Models
         public string TimelineId { get; set; }
 
     }
+
+    public class SystemViewModel
+    {
+        public string Title { get; set; }
+        [Display(Name = "Date/Time")]
+        public DateTime CreationTimeStamp { get; set; }
+        public string Id { get; set; }
+
+        public SystemViewModel(string title, string date, string id)
+        {
+            Title = title;
+            CreationTimeStamp = new DateTime(long.Parse(date));
+            Id = id;
+        }
+
+    }
 }
