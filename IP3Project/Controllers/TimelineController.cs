@@ -141,7 +141,7 @@ namespace IP3Project.Controllers
             //Populates the viewmodel with relevent results
             foreach (Timeline x in resultsDTO)
             {
-                model.timelines.Add(new TimelineViewModel(x.Title, x.CreationTimeStamp, x.Id));
+                model.timelines.Add(x);
             }
 
             return model;

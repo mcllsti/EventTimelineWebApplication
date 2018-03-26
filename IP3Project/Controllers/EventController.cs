@@ -14,7 +14,7 @@ namespace IP3Project.Controllers
         public IActionResult EventRegister(string Id )
         {
 
-            List<TimelineEventViewModel> list = new List<TimelineEventViewModel>();
+            List<Timeline> list = new List<Timeline>();
             list = GetAllTimelines(list,Id);
 
             List<Event> model = new List<Event>();
@@ -28,7 +28,7 @@ namespace IP3Project.Controllers
 
         }
 
-        private List<TimelineEventViewModel> GetAllTimelines(List<TimelineEventViewModel> model, string Id)
+        private List<Timeline> GetAllTimelines(List<Timeline> model, string Id)
         {
 
             var request = new RestRequest("Timeline/GetAllTimelinesAndEvent"); //setting up the request params
@@ -36,7 +36,7 @@ namespace IP3Project.Controllers
 
             var resultsDTO = JsonConvert.DeserializeObject<AllTimelines>(response.Content); //Deserializes the results from the response
 
-            foreach(TimelineEventViewModel x in resultsDTO.Timelines.Where(x => x.Id.Equals(Id)))
+            foreach(Timeline x in resultsDTO.Timelines.Where(x => x.Id.Equals(Id)))
             {
                 model.Add(x);
             }

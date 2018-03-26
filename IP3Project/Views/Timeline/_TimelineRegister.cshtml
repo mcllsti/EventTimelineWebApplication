@@ -29,14 +29,14 @@
             <tbody>
 
                 @{
-                //DISPLAYS DYNAMIC TIMELINE CONTENT
-                foreach (var x in Model.timelines)
-                {
+                    //DISPLAYS DYNAMIC TIMELINE CONTENT
+                    foreach (var x in Model.timelines)
+                    {
 
                 <tr class="clickable-tr">
                     <!--The entire <tr> needs to be made clickable so we can go to the timeline, can do this with jQuery/JS.-->
                     <td scope="row">@Html.ActionLink(x.Title, "EventRegister", "Event", new { Id = x.Id }, null)</td>
-                    <td class="text-center"> @x.CreationTimeStamp</td>
+                    <td class="text-center"> @x.GetDateTime()</td>
                     <td class="text-right">
 
                         <div class="dropdown">

@@ -8,31 +8,26 @@ namespace IP3Project.Models
 {
 
 
-    public class Timeline //DELETE ME EVENTUALLY
+    public class Timeline 
     {
         public string Id { get; set; }
-        public string Title { get; set; }
-        public string CreationTimeStamp { get; set; }
-        public bool IsDeleted { get; set; }
-
-    }
-
-    /// <summary>
-    /// Viewmodel that will be used to display Timelines from the API
-    /// </summary>
-    public class TimelineViewModel
-    {
         public string Title { get; set; }
         [Display(Name = "Date/Time")]
-        public DateTime CreationTimeStamp { get; set; }
-        public string Id { get; set; }
+        public string CreationTimeStamp { get; set; }
 
-        public TimelineViewModel(string title, string date, string id)
+        public List<Event> TimelineEvents { get; set; }
+
+        public Timeline()
         {
-            Title = title;
-            CreationTimeStamp = new DateTime(long.Parse(date));
-            Id = id;
+            TimelineEvents = new List<Event>();
         }
+
+        public DateTime GetDateTime()
+        {
+            DateTime dateTime = new DateTime((long.Parse(CreationTimeStamp)));
+            return dateTime;
+        }
+
 
     }
 
@@ -51,11 +46,11 @@ namespace IP3Project.Models
     /// </summary>
     public class TimelineList
     {
-        public List<TimelineViewModel> timelines { get; set; }
+        public List<Timeline> timelines { get; set; }
 
         public TimelineList()
         {
-            timelines = new List<TimelineViewModel>();
+            timelines = new List<Timeline>();
         }
 
     }

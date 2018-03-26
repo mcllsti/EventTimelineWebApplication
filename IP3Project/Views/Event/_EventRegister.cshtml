@@ -1,8 +1,8 @@
-﻿@model List<IP3Project.Models.TimelineEventsViewModel>
+﻿@model List<IP3Project.Models.Event>
 
 <h4>TimelineEventsViewModel</h4>
 <hr />
-@foreach (TimelineEventsViewModel x in Model)
+@foreach (Event x in Model)
 {
     <div>
 
@@ -26,10 +26,10 @@
                 @Html.DisplayFor(model => x.Description)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => x.tDateTime)
+                @Html.DisplayNameFor(model => x.DateTime)
             </dt>
             <dd>
-                @Html.DisplayFor(model => x.tDateTime)
+                @Html.DisplayFor(model => x.DateTime)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => x.Location)
