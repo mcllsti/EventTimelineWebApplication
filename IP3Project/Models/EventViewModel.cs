@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IP3Project.Classes
+namespace IP3Project.Models
 {
     public class Event
     {
