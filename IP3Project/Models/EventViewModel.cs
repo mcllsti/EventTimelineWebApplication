@@ -8,11 +8,11 @@ namespace IP3Project.Models
 
 {
 
-    public class Timelinez
+    public class AllTimelines
     {
         public List<TimelineEventViewModel> Timelines { get; set; }
 
-        public Timelinez()
+        public AllTimelines()
         {
             Timelines = new List<TimelineEventViewModel>();
         }
@@ -26,37 +26,35 @@ namespace IP3Project.Models
 
         public string CreationTimeStamp { get; set; }
         public string Id { get; set; }
-        public List<TimelineEventsViewModel> TimelineEvents { get; set; }
+        public List<Event> TimelineEvents { get; set; }
 
         public TimelineEventViewModel()
         {
-            TimelineEvents= new List<TimelineEventsViewModel>();
+            TimelineEvents= new List<Event>();
         }
 
     }
 
 
-    public class TimelineEventsViewModel
+    public class Event
     {
 
         public string Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string tDateTime { get; set; }
+        public string DateTime { get; set; }
         public string Location { get; set; }
-        public List<tempAttachment> Attachments { get; set; }
+        public List<Attachment> Attachments { get; set; }
 
-        public TimelineEventsViewModel()
+        public Event()
         {
-            Attachments = new List<tempAttachment>();
+            Attachments = new List<Attachment>();
         }
 
-        //LINKEDEVENTS?
-        //ATTACHEMENTS?
 
     }
 
-    public class tempAttachment
+    public class Attachment
     {
 
         public string Id { get; set; }

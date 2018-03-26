@@ -17,7 +17,7 @@ namespace IP3Project.Controllers
             List<TimelineEventViewModel> list = new List<TimelineEventViewModel>();
             list = GetAllTimelines(list,Id);
 
-            List<TimelineEventsViewModel> model = new List<TimelineEventsViewModel>();
+            List<Event> model = new List<Event>();
             model = list.First().TimelineEvents;
 
 
@@ -34,7 +34,7 @@ namespace IP3Project.Controllers
             var request = new RestRequest("Timeline/GetAllTimelinesAndEvent"); //setting up the request params
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
 
-            var resultsDTO = JsonConvert.DeserializeObject<Timelinez>(response.Content); //Deserializes the results from the response
+            var resultsDTO = JsonConvert.DeserializeObject<AllTimelines>(response.Content); //Deserializes the results from the response
 
             foreach(TimelineEventViewModel x in resultsDTO.Timelines.Where(x => x.Id.Equals(Id)))
             {
