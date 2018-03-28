@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using IP3Project.Classes;
 using IP3Project.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,24 +14,63 @@ namespace IP3Project.Controllers
     public class TimelineController : BaseController
     {
         // GET: Timeline
-        public ActionResult Timelines()
+        //public ActionResult Timelines()
+        //{
+        //    TimelineList model = new TimelineList();
+        //    model = GetEvents(model);
+
+        //    return View(model);
+        //}
+
+        public IActionResult Timelines(string sortOrder, string searchString)
         {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
             TimelineList model = new TimelineList();
             model = GetAllTimelines(model);
 
+            var results = from s in model.Timelines
+                          select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                results = results.Where(s => s.Title.Contains(searchString)
+                                       || s.CreationTimeStamp.ToString().Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    results = results.OrderByDescending(s => s.Title);
+                    break;
+                case "Date":
+                    results = results.OrderBy(s => s.CreationTimeStamp);
+                    break;
+                case "name":
+                    results = results.OrderBy(s => s.Title);
+                    break;
+                default:
+                    results = results.OrderByDescending(s => s.CreationTimeStamp);
+                    break;
+            }
+
+            model.Timelines = results.ToList();
             return View(model);
         }
 
+
         [HttpGet]
-        public IActionResult CreateTimeline()
+        public PartialViewResult CreateTimeline()
         {
-            CreateViewModel model = new CreateViewModel();
-            return View(model);
+            ViewData["Title"] = "Create a Timeline";
+            ViewData["Action"] = "CreateTimeline";
+            CreateEditViewModel model = new CreateEditViewModel();
+            return PartialView("_CreateEditTimeline",model);
 
         }
 
         [HttpPost]
-        public IActionResult CreateTimeline(CreateViewModel model)
+        public IActionResult CreateTimeline(CreateEditViewModel model)
         {
             string success = Create(model);
 
@@ -40,8 +78,29 @@ namespace IP3Project.Controllers
 
         }
 
+
+        [HttpGet]
+        public PartialViewResult Edit(string Id)
+        {
+            ViewData["Title"] = "Edit Timeline";
+            ViewData["Action"] = "Edit";
+            CreateEditViewModel model = new CreateEditViewModel(Id);
+            model = GetTimeline(model);
+            return PartialView("_CreateEditTimeline", model);
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CreateEditViewModel model)
+        {
+            string success = EditTimeline(model);
+
+            return RedirectToAction("Timelines"); //returns to the Index!
+
+        }
+
         /// <summary>
-        /// Deletes a Timeline from the API and returns to the list of timelines
+        /// Deletes a Timeline from the API and returns to the list of Timelines
         /// </summary>
         /// <param name="Id">String Id of timeline to be deleted</param>
         /// <returns>Redirects to Index Action</returns>
@@ -50,7 +109,7 @@ namespace IP3Project.Controllers
 
             string IsSuccessful = DeleteTimeline(Id); //Calls delete timeline method which will give a success or failure string
 
-            return RedirectToAction("Index"); //returns to the Index!
+            return RedirectToAction("Timelines"); //returns to the Index!
 
         }
 
@@ -67,9 +126,9 @@ namespace IP3Project.Controllers
         #region Utility
 
         /// <summary>
-        /// Makes a request to the API and returns a populated view model with all timelines 
+        /// Makes a request to the API and returns a populated view model with all Timelines 
         /// </summary>
-        /// <param name="model">TimelineList viewmodel to be populated with a list of timelines</param>
+        /// <param name="model">TimelineList viewmodel to be populated with a list of Timelines</param>
         /// <returns>Populated TimelineList viewmodel</returns>
         private TimelineList GetAllTimelines(TimelineList model)
         {
@@ -82,8 +141,26 @@ namespace IP3Project.Controllers
             //Populates the viewmodel with relevent results
             foreach (Timeline x in resultsDTO)
             {
-                model.timelines.Add(new TimelineViewModel(x.Title, x.CreationTimeStamp, x.Id));
+                model.Timelines.Add(x);
             }
+
+            return model;
+        }
+
+
+        private CreateEditViewModel GetTimeline(CreateEditViewModel model)
+        {
+
+            var request = new RestRequest("Timeline/GetTimeline"); //setting up the request params
+            request.AddHeader("TimelineId",model.TimelineId);
+
+            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+
+
+            var resultsDTO = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
+
+            model.TimelineId = resultsDTO.Id;
+            model.Title = resultsDTO.Title;
 
             return model;
         }
@@ -114,12 +191,30 @@ namespace IP3Project.Controllers
         /// <returns>The timeline.</returns>
         /// <param name="Title">String Title of the timeline.</param>
         /// <param name="Id">String Id to given to the Timleine.</param>
-        private String Create(CreateViewModel model)
+        private String Create(CreateEditViewModel model)
         {
 
             var request = new RestRequest("Timeline/Create");
 
-            model.TimelineId = "6";
+            model.TimelineId = Guid.NewGuid().ToString();
+
+            var success = API.PutRequest(request, model);
+
+            return success.ToString();
+
+
+        }
+
+        /// <summary>
+        /// Creates a timeline.
+        /// </summary>
+        /// <returns>The timeline.</returns>
+        /// <param name="Title">String Title of the timeline.</param>
+        /// <param name="Id">String Id to given to the Timleine.</param>
+        private String EditTimeline(CreateEditViewModel model)
+        {
+
+            var request = new RestRequest("Timeline/EditTitle");
 
             var success = API.PutRequest(request, model);
 

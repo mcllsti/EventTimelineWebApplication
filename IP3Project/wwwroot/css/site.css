@@ -43,7 +43,6 @@
 
 .pageContent {
     text-align: center;
-
 }
 
 .timelineRegister {
@@ -94,4 +93,72 @@
 footer {
     text-align: center;
 
+}
+
+
+
+.modal-content {
+    top: 5%;
+    width: 50%;
+    height: auto;
+    overflow: auto;
+    padding: 20px 50px 20px 20px;
+
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    outline: 0;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    padding: 4px;
+    font-size: 16px;
+    border: none;
+    background-color: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 15px 20px;
+        text-decoration: none;
+        display: block;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd
+        }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    opacity: 0.7;
+}
+
+.create-form {
+    text-align: center;
+    align-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }

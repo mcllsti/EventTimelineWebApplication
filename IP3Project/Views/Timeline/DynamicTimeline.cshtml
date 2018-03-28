@@ -1,0 +1,31 @@
+﻿@model DynamicTimelineViewModel;
+
+<!-- https://codepen.io/cjl750/pen/mXbMyo -->
+<!-- http://freefrontend.com/css-timelines/#horizontal-timelines -->
+
+
+<h2>@Model.Title</h2>
+<h3>Creation Date: @Model.DateCreated</h3>
+
+<timeline-body>
+
+    <div class="flex-parent">
+        <div class="input-flex-container">
+            @foreach (var x in Model.AllEvents)
+            {
+            <div class="input">
+                <span data-year="@x.DateTime" data-info="@x.Title"></span>
+            </div>
+            }
+        </div>
+
+        <div class="description-flex-container">
+            <p>Test Description</p>
+            <p>Test 2</p>
+        </div>
+
+    </div>
+
+
+</timeline-body>
+

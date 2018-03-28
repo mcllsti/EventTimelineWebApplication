@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using IP3Project.Models;
 using RestSharp;
 using Newtonsoft.Json;
-using IP3Project.Classes;
+
 
 namespace IP3Project.Controllers
 {
