@@ -1,10 +1,17 @@
 ﻿
 @{
     ViewData["Title"] = "Timeline View";
+
 }
 
 <h2></h2>
 
 @{
-    Html.RenderPartial("/Views/Timeline/DynamicTimeline.cshtml");
+    Html.RenderPartial("_DynamicTimeline.cshtml");
 }
+
+@{
+    Html.RenderPartial("_EventView.cshtml");
+}
+
+<script src="~/js/dynamicTimeline.js"></script>

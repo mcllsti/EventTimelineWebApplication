@@ -1,0 +1,37 @@
+﻿
+@*@{
+    ViewData["Title"] = "View";
+}
+
+@Html.ActionLink("Create one now!", "CreateEvent", "Event", null, new { @class = "modal-link btn btn-primary btn-large" })
+
+
+<div id="container">
+
+</div>
+
+
+
+@section scripts {
+<script type="text/javascript" language="javascript">
+   $(document).ready(function () {
+       $.ajax({
+           url: '/Event/EventRegister',
+           data: {Id : "@Model"},
+           type: "GET",
+           success: function (responce) {
+               console.log(responce);
+               $("#container").html(responce);
+           },
+           error: function (xhr) {
+               alert('error');
+           }
+       });
+   });
+</script>
+}*@
+
+
+
+
+

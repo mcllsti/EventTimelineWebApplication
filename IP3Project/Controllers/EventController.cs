@@ -15,18 +15,10 @@ namespace IP3Project.Controllers
         [HttpGet]
         public ActionResult TimelineView(string id)
         {
-            DynamicTimelineViewModel model = new DynamicTimelineViewModel(id);
+            Timeline model = new Timeline(id);
+            model = GetTimeline(model);
+            model.TimelineEvents = GetEvents(id).Events;
 
-            var request = new RestRequest("Timeline/GetTimeline"); //setting up the request params
-            request.AddHeader("TimelineId", model.Id);
-
-            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
-
-            var resultsDTO = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
-
-            model.Title = resultsDTO.Title;
-            model.DateCreated = resultsDTO.CreationTimeStamp;
-            model.AllEvents = GetEvents(id).Events;
 
             return View(model);
         }
@@ -54,11 +46,42 @@ namespace IP3Project.Controllers
             foreach(Timeline x in resultsDTO.Timelines.Where(x => x.Id.Equals(Id)))
             {
                 model.Events = x.TimelineEvents;
+                
             }
 
             return model;
         }
 
+        private Timeline GetTimeline(Timeline model)
+        {
+
+            var request = new RestRequest("Timeline/GetTimeline"); //setting up the request params
+            request.AddHeader("TimelineId", model.Id);
+
+            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+
+            model = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
+
+            return model;
+        }
+
+
+        private AttachmentList GetAttachments(string eventId)
+        {
+
+            var request = new RestRequest("TimelineEventAttachment/GetAttachmets"); //setting up the request params
+            request.AddHeader("TimelineEventId", eventId);
+
+            IRestResponse response = API.GetRequest(request);
+            
+            AttachmentList model = new AttachmentList();
+
+            model = JsonConvert.DeserializeObject<AttachmentList>(response.Content);
+
+            //List<AttachmentViewModel> AllAttachements = new List<AttachmentViewModel>();
+
+            return (model);
+        }
 
 
 

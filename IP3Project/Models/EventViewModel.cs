@@ -27,11 +27,11 @@ namespace IP3Project.Models
         public string Description { get; set; }
         public string DateTime { get; set; }
         public string Location { get; set; }
-        public List<Attachment> Attachments { get; set; }
+        public List<AttachmentViewModel> Attachments { get; set; }
 
         public Event()
         {
-            Attachments = new List<Attachment>();
+            Attachments = new List<AttachmentViewModel>();
         }
 
         public DateTime GetDateTime(string dateTimeString)
@@ -42,15 +42,6 @@ namespace IP3Project.Models
         }
 
 
-    }
-
-    public class Attachment
-    {
-
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public string TimelineEventId { get; set; }
-        
     }
 
 

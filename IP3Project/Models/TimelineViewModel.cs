@@ -22,6 +22,13 @@ namespace IP3Project.Models
             TimelineEvents = new List<Event>();
         }
 
+        public Timeline(string id)
+        {
+            Id = id;
+            TimelineEvents = new List<Event>();
+        }
+
+
         public DateTime GetDateTime()
         {
             DateTime dateTime = new DateTime((long.Parse(CreationTimeStamp)));
