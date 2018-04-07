@@ -1,90 +1,29 @@
 ﻿@model IP3Project.Models.Event
 
-<head>
-    <link rel="stylesheet" href="~/css/GoogleMapStyle.css" />
-</head>
-
 <div>
-    <h4>@Model.Title</h4>
-    <h4>@Model.DateTime</h4>
+    <h1>@Html.DisplayFor(model => model.Title)</h1>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDateTime)
+        </dt>
+        <dd>
+            @Model.GetDateTime(Model.EventDateTime);
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
     </dl>
-
-    <div class="pageContent">
-        <h2>Help</h2>
-
-        <div>
-            <h3>Adding a Timeline</h3>
-            <p>Here we will put information on using the software</p>
-        </div>
-
-    </div>
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-
-            <form class="col-12">
-                <h3 class="text-center">Create Event</h3>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Event Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-
-
-                <div class="form-group">
-                    <label for="datepicker">Date & Time</label>
-                    <input class="form-control" id="datetime" placeholder="2018/01/01 00:00">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="pac-input">Location</label>
-                    <input type="text" class="form-control" id="pac-input" placeholder="">
-                </div>
-
-                <div id="map"></div>
-
-                <div class="container" role="main">
-                    <div class="center-block text-center">
-                        <button type="button" class="btn btn-primary">Create</button>
-                        <button type="button" class="btn btn-default">Cancel</button>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-    </div>
-
-    <p>
-        Coordinates of marker : <br>
-        Lat: <span id="pointLat"> None </span> <br>
-        Lng: <span id="pointLng"> None </span>
-    </p>
-    <input onclick="deleteMarkers();" type=button value="Remove Location">
-
 </div>
-
-
-<!-- DateTime Picker -->
-@{
-    <script type="text/javascript">
-        $("#datetime").datetimepicker({
-            step: 10
-        });
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGImu3qnFL__9nvtpMtMcfJkXjc9kCg8A&libraries=places&callback=initMap" async defer></script>
-}
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-<script src="~/js/jquery.datetimepicker.full.js"></script>
+<div>
+    @Html.ActionLink("Delete", "DeleteEvent", new { Id = Model.Id }) |
+</div>

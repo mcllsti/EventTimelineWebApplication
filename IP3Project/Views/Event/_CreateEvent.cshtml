@@ -2,6 +2,7 @@
 
 
 
+
 <div class="create-form">
     <h4>@ViewData["Title"]</h4>
     <hr />
@@ -9,6 +10,10 @@
         <div class="col-8">
             <form asp-action="@ViewData["Action"]">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.TimelineId)
+                @Html.HiddenFor(m => m.TimelineEventId)
+                @Html.HiddenFor(m => m.AuthToken)
+                @Html.HiddenFor(m => m.TenantId)
                 <div class="form-group">
                     <label asp-for="Title" class="control-label"></label>
                     <input asp-for="Title" class="form-control" />
@@ -20,23 +25,86 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="DateTime" class="control-label"></label>
-                    <input asp-for="DateTime" class="form-control" />
-                    <span asp-validation-for="DateTime" class="text-danger"></span>
+                    <label asp-for="EventDateTime" class="control-label"></label>
+                    <input asp-for="EventDateTime" id="datetimepicker" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label asp-for="Location" class="control-label"></label>
-                    <input asp-for="Location" class="form-control" />
+                    <input asp-for="Location" id="Location" class="form-control" />
                     <span asp-validation-for="Location" class="text-danger"></span>
                 </div>
+                <div id="map"></div>
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                    <a asp-action="Timelines" class="btn btn-default">Cancel</a>
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<!-- this should go after your </body> -->
+<link rel="stylesheet" type="text/css" href="~/css/jquery.datetimepicker.css" />
+<script src="~/js/jquery.datetimepicker.full.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGImu3qnFL__9nvtpMtMcfJkXjc9kCg8A&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+
+<script type="text/javascript">
+    $('#datetimepicker').datetimepicker({ value: '@DateTime.Now', step: 1, format: 'd.m.Y H:i', });
+</script>
+
+<script>
+    var map;
+    var markers = [];
+
+    function initMap() {
+        var lat_lng = { lat: 54.0180612448939, lng: -2.2617072359844315 };
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 5,
+            center: lat_lng,
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        });
+
+        // This event listener will call addMarker() when the map is clicked.  
+        map.addListener('click', function (event) {
+            deleteMarkers()
+            addMarker(event.latLng);
+            $('#Location').val(event.latLng);
+        });
+
+        // Adds a marker at the center of the map.  
+        addMarker(lat_lng);
+    }
+
+    function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
+
+    function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+    }
+
+    function clearMarkers() {
+        setMapOnAll(null);
+    }
+
+
+    // Adds a marker to the map and push to the array.  
+    function addMarker(location) {
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+        markers.push(marker);
+    }  
+</script>
+
+
 
 
 

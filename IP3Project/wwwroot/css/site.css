@@ -1,4 +1,10 @@
-﻿body {
+﻿
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px
 }
@@ -14,6 +20,20 @@
 #qrCode {
     margin: 15px
 }
+
+.pageContent {
+    text-align: center;
+}
+
+.popup-window {
+    width: 50%;
+    height: auto;
+
+}
+
+
+/*======= Navbar ========*/
+/*==========================*/
 
 .navbar {
     background-color: #eeeeee;
@@ -41,9 +61,10 @@
         opacity: 0.5;
     }
 
-.pageContent {
-    text-align: center;
-}
+/*======= End of Navbar ========*/
+
+
+
 
 .timelineRegister {
     text-align: center;
@@ -96,17 +117,15 @@ footer {
 }
 
 
-
 .modal-content {
-    top: 5%;
+    top: 10%;
     width: 50%;
     height: auto;
-    overflow: auto;
+    overflow: hidden;
     padding: 20px 50px 20px 20px;
-
     margin: auto;
     background-color: #fff;
-    position: relative;
+    position: center;
     outline: 0;
 }
 
@@ -161,4 +180,49 @@ footer {
     align-content: center;
     padding-left: 20px;
     padding-right: 20px;
+
 }
+
+#map {
+    height: 400px;
+    margin-bottom: 10px;
+}
+
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+}
+
+#pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+}
+
+.pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+}
+
+    .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+
+
+#title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+

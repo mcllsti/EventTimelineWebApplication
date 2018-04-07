@@ -1,28 +1,25 @@
 ﻿@model Timeline;
-
 <!-- https://codepen.io/cjl750/pen/mXbMyo -->
 <!-- http://freefrontend.com/css-timelines/#horizontal-timelines -->
 
 
 <h2>@Model.Title</h2>
 <h3>Creation Date: @Model.GetDateTime()</h3>
-
+@Html.ActionLink("Create New Event", "CreateEvent", "Event", new { Id = Model.Id }, new { @class = "modal-link btn btn-primary btn-large" })
+<br/>
 <timeline-body>
 
     <div class="flex-parent">
         <div class="input-flex-container">
             @foreach (var x in Model.TimelineEvents)
             {
-            <div class="input">
-                <span data-year="@Model.GetDateTime()" data-info="@x.Title"></span>
-            </div>
+                <div class="input" id="@x.Id">
+                    <span data-year="@x.GetDateTime(x.EventDateTime)" data-info="@x.Title"></span>
+                </div>
             }
         </div>
 
-        <div class="description-flex-container">
-            <p>Test Description</p>
-            <p>Test 2</p>
-        </div>
+
 
     </div>
 

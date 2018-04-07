@@ -6,12 +6,20 @@
 
 <h2></h2>
 
+
 @{
     Html.RenderPartial("_DynamicTimeline.cshtml");
 }
 
-@{
-    Html.RenderPartial("_EventView.cshtml");
-}
+<div class="description-flex-container">
+</div>
+
 
 <script src="~/js/dynamicTimeline.js"></script>
+
+<div id="modal-container" class="modal fade">
+    <div class="modal-content">
+    </div>
+</div>
+
+
