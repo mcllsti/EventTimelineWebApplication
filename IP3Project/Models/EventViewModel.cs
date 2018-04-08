@@ -107,5 +107,15 @@ namespace IP3Project.Models
         
     }
 
+    public class AttachmentList
+    {
+        public List<Attachment> Attachments { get; set; }
+
+        public AttachmentList()
+        {
+            Attachments = new List<Attachment>();
+        }
+    }
+
 
 }

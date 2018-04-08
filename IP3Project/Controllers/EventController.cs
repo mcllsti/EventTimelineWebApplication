@@ -46,12 +46,31 @@ namespace IP3Project.Controllers
             var request = new RestRequest("TimelineEvent/GetTimelineEvent"); //setting up the request params
             request.AddHeader("TimelineEventId", Id);
 
-            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response   
 
             var model = JsonConvert.DeserializeObject<Event>(response.Content); //Deserializes the results from the response
+
+            List<Attachment> Attachments = new List<Attachment>();
+            model.Attachments = GetEventAttachments(Id);
+
             return model;
 
         }
+
+
+
+        public List<Attachment> GetEventAttachments(string Id)
+        {
+            var request = new RestRequest("TimelineEventAttachment/GetAttachments"); //setting up the request params
+            request.AddHeader("TimelineEventId", Id);
+
+            IRestResponse response = API.GetRequest(request);
+
+            var model = JsonConvert.DeserializeObject<List<Attachment>>(response.Content);
+
+            return model;
+        }
+
 
         public IActionResult DeleteEvent(string Id)
         {

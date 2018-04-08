@@ -22,8 +22,33 @@
         <dd>
             @Html.DisplayFor(model => model.Location)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attachments)
+        </dt>
+        <dd>
+
+            @if (Model.Attachments.Any())
+            {
+                foreach(var x in Model.Attachments)
+                {
+                    <div>
+                        <h4>@x.Title</h4>
+                    </div>             
+                }
+            }
+            else
+            {
+                <div>
+                    <i>No Attachments</i>
+                </div>
+            }
+
+
+        </dd>
     </dl>
 </div>
+<br />
 <div>
-    @Html.ActionLink("Delete", "DeleteEvent", new { Id = Model.Id }) |
+    @Html.ActionLink("Delete", "DeleteEvent", new { Id = Model.Id })
 </div>
