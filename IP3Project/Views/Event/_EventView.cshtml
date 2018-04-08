@@ -23,31 +23,36 @@
             @Html.DisplayFor(model => model.Location)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Attachments)
-        </dt>
-        <dd>
 
-            @if (Model.Attachments.Any())
-            {
-                foreach(var x in Model.Attachments)
-                {
-                    <div>
-                        <h4>@x.Title</h4>
-                    </div>             
-                }
-            }
-            else
-            {
-                <div>
-                    <i>No Attachments</i>
-                </div>
-            }
 
 
         </dd>
     </dl>
+
+<div>
+        @Html.DisplayNameFor(model => model.Attachments)
+    <br />
+        @Html.ActionLink("Add Attachment", "UploadAttachmentView", "Event", new { id = Model.Id }, new { @class = "modal-link" })
+    
+    
+        @if (Model.Attachments.Any())
+        {
+            foreach (var x in Model.Attachments)
+            {
+                <div>
+                    @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title })
+                </div>
+            }
+        }
+        else
+        {
+            <div>
+                <i>No Attachments</i>
+            </div>
+        }
 </div>
+
+
 <br />
 <div>
     @Html.ActionLink("Delete", "DeleteEvent", new { Id = Model.Id })

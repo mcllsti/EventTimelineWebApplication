@@ -49,8 +49,6 @@ namespace IP3Project.Models
         }
 
 
-
-
     }
 
 
@@ -100,11 +98,24 @@ namespace IP3Project.Models
 
     public class Attachment
     {
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string TimelineEventId { get; set; }       
+    }
 
+    public class CreateAttachment
+    {
         public string Id { get; set; }
         public string Title { get; set; }
         public string TimelineEventId { get; set; }
-        
+
+        public CreateAttachment(string id, string title, string timelineEventId)
+        {
+            id = Id;
+            title = Title;
+            timelineEventId = TimelineEventId;
+        }
+
     }
 
     public class AttachmentList

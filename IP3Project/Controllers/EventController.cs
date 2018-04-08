@@ -40,6 +40,11 @@ namespace IP3Project.Controllers
             return PartialView("_EventView", EventToDisplay);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Event GetEvent(string Id)
         {
 
@@ -58,7 +63,11 @@ namespace IP3Project.Controllers
         }
 
 
-
+        /// <summary>
+        /// Gets and returns list of attachments on a single event
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public List<Attachment> GetEventAttachments(string Id)
         {
             var request = new RestRequest("TimelineEventAttachment/GetAttachments"); //setting up the request params
@@ -153,7 +162,7 @@ namespace IP3Project.Controllers
         [HttpGet]
         public PartialViewResult CreateEvent(string Id)
         {
-            ViewData["Title"] = "Create a Event";
+            ViewData["Title"] = "Create an Event";
             ViewData["Action"] = "CreateEvent";
             CreateEventView model = new CreateEventView(Id);
             return PartialView("_CreateEvent", model);
@@ -197,7 +206,13 @@ namespace IP3Project.Controllers
         }
 
 
+        public PartialViewResult UploadAttachmentView(string id)
+        {
 
+            CreateAttachment model = new CreateAttachment(null, null, id);
+
+            return PartialView("_UploadAttachment", model);
+        }
 
 
 
