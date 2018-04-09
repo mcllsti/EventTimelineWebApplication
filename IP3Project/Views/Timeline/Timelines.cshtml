@@ -12,19 +12,19 @@
     </div>
 
     @{
-       
+
 
         if (Model.Timelines.Count == 0 && ViewData["currentFilter"] == null)
         {
-    <div id="partialTimelineRegister">
-        <h3>You have not created a timeline yet! </h3>
-        @{
-            @Html.ActionLink("Create one now!", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn btn-primary btn-large" }) //GAVIN EDIT THE CLASS TYPE HERE FOR A NICER BUTTON PLEASE;
+            <div id="partialTimelineRegister">
+                <h3>You have not created a timeline yet! </h3>
+                @{
+                    @Html.ActionLink("Create one now!", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn btn-primary btn-large" }) //GAVIN EDIT THE CLASS TYPE HERE FOR A NICER BUTTON PLEASE;
+                }
+            </div>
         }
-    </div>
-            }
-            else
-            {
+        else
+        {
 
             <div>
                 @{
@@ -35,34 +35,11 @@
         }
     }
 
-    @section scripts {
-        <script type="text/javascript" language="javascript">
-            $(function () {
-                console.log("I've been called1");
-                // Initialize numeric spinner input boxes
-                //$(".numeric-spinner").spinedit();
-                // Initialize modal dialog
-                // attach modal-container bootstrap attributes to links with .modal-link class.
-                // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
-                $('body').on('click', '.modal-link', function (e) {
-                    console.log("I've been called2");
-                    e.preventDefault();
-                    $(this).attr('data-target', '#modal-container');
-                    $(this).attr('data-toggle', 'modal');
-                });
-                // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
-                $('body').on('click', '.modal-close-btn', function () {
-                    $('#modal-container').modal('hide');
-                });
-                //clear modal cache, so that new content can be loaded
-                $('#modal-container').on('hidden.bs.modal', function () {
-                    $(this).removeData('bs.modal');
-                });
-            });
 
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
 
-        </script>
-    }
+    <script src="~/js/timelines.js"></script>
 
 
 </div>

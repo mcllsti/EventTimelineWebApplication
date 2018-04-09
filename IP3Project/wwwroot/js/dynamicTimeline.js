@@ -18,7 +18,6 @@ $(function () {
             data: { Id: id },
             type: "GET",
             success: function (responce) {
-                console.log(responce);
                 $('.description-flex-container').html(responce);
             },
             error: function (xhr) {

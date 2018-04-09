@@ -1,47 +1,51 @@
 ﻿@model IP3Project.Models.Event
 
 <div>
-    <h1>@Html.DisplayFor(model => model.Title)</h1>
+    <h1>@Html.DisplayFor(model => model.Title) @Html.ActionLink("", "EditTitle", new { Id = Model.Id, Title = Model.Title }, new { @class = "modal-link glyphicon glyphicon-edit" })</h1>
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.EventDateTime)
         </dt>
         <dd>
-            @Model.GetDateTime(Model.EventDateTime);
+            @Model.GetDateTime(Model.EventDateTime) @Html.ActionLink("", "EditDate", new { Id = Model.Id, Date = Model.EventDateTime }, new { @class = "modal-link glyphicon glyphicon-edit" })
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Description)  @Html.ActionLink("", "EditDescription", new { Id = Model.Id, Description = Model.Description }, new { @class = "modal-link glyphicon glyphicon-edit" })
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Location)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+            @Html.DisplayFor(model => model.Location)  @Html.ActionLink("", "EditLocation", new { Id = Model.Id, Location = Model.Location }, new { @class = "modal-link glyphicon glyphicon-edit" })
 
+            @{if (Model.Location != null)
+                { @Html.ActionLink("", "RemoveLocation", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-trash" }) } }
 
-
+            @{if (Model.Location != null)
+                { <div id="mapDisplay"></div>} }
 
         </dd>
     </dl>
-
-<div>
-        @Html.DisplayNameFor(model => model.Attachments)
     <br />
-        @Html.ActionLink("Add Attachment", "UploadAttachmentView", "Event", new { id = Model.Id }, new { @class = "modal-link" })
-    
-    
+    <h3>@Html.DisplayNameFor(model => model.Attachments)</h3>
+    <div class="attachment-box">
+
+        @Html.ActionLink("Add Attachment", "UploadAttachmentView", "Event", new { id = Model.Id }, new { @class = "modal-link btn btn-primary btn-large" })
+        <br />
+
         @if (Model.Attachments.Any())
         {
             foreach (var x in Model.Attachments)
             {
-                <div>
-                    @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title })
-                </div>
+                <hr />
+                <section>
+                    @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title }, new { @class = "attachment-file" })
+                </section>
+                <hr />
             }
         }
         else
@@ -50,10 +54,42 @@
                 <i>No Attachments</i>
             </div>
         }
+    </div>
+
 </div>
-
-
-<br />
 <div>
-    @Html.ActionLink("Delete", "DeleteEvent", new { Id = Model.Id })
+    @Html.ActionLink("Delete Event", "DeleteEvent", "Event", new { Id = Model.Id }, new { @class = "btn-default" } ) 
 </div>
+
+
+
+
+@{if (Model.Location != null)
+    {
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGImu3qnFL__9nvtpMtMcfJkXjc9kCg8A&libraries=places&callback=initMap"
+                type="text/javascript"></script>
+
+        <script type="text/javascript">
+    var lat = @Model.Location.Split(",").First();
+    var lng = @Model.Location.Substring(Model.Location.IndexOf(",")+1);
+
+    function initMap() {
+        var lat_lng = { lat: lat, lng: lng};
+
+        var map = new google.maps.Map(document.getElementById('mapDisplay'), {
+            zoom: 5,
+            center: lat_lng
+        });
+
+        var marker = new google.maps.Marker({
+            position: lat_lng,
+            map: map
+        });
+    }
+        </script>
+
+
+
+    } }
+

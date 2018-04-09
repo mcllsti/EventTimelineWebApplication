@@ -6,7 +6,7 @@
     <hr />
     <div class="row">
         <div class="col-8">
-            <form asp-action="@ViewData["Action"]">
+            <form asp-action="@ViewData["Action"]" id="Form">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @Html.HiddenFor(m => m.TimelineId)
                 <div class="form-group">
@@ -22,6 +22,8 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/validationReset.js"></script>
 
 
 

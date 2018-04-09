@@ -88,8 +88,9 @@ namespace IP3Project.Models
         }
 
 
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         [Required]
-        [StringLength(30, ErrorMessage = "Title too long. Must be under 30 characters")]
+        [StringLength(30)]
         [Display(Name = "Timeline Title")]
         public string Title { get; set; }
 
