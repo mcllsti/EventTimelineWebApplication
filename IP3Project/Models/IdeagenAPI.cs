@@ -64,7 +64,7 @@ namespace IP3Project.Models
 
             IRestResponse response = client.Execute(request); //execures request 
 
-            return response.Content;
+            return response.StatusDescription;
 
         }
 
@@ -116,31 +116,6 @@ namespace IP3Project.Models
 
 
 
-        //ALL THIS CODE MAY BE USED LATER
-        //IF DEVELOPMENT IS FINISHED THEN DELETE THIS REGION
-        #region JUNKCODE
-
-        /// <summary>
-        /// Author: Mehmet Ataş
-        /// Source: https://stackoverflow.com/questions/16962727/how-to-set-properties-on-a-generic-entity?rq=1
-        /// Lisence: Free Use
-        /// 
-        /// Code Snipped that will try to set a specified property of a generic object. 
-        /// Main use is setting knowen authtoken and tenantid properies for POST methods
-        /// </summary>
-        /// <param name="obj">Generic Object</param>
-        /// <param name="property">String name of property to set</param>
-        /// <param name="value">Value of property to set</param>
-        private void TrySetProperty(object obj, string property, object value)
-        {
-
-            // TrySetProperty(x, "AuthToken", AuthToken);
-            // TrySetProperty(x, "TenantId", TenantId);
-            var prop = obj.GetType().GetProperty(property, BindingFlags.Public | BindingFlags.Instance);
-            if (prop != null && prop.CanWrite)
-                prop.SetValue(obj, value, null);
-        }
-        #endregion
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -59,6 +60,7 @@ namespace IP3Project.Models
     {
         public string TimelineEventId { get; set; }
         [Required]
+        [StringLength(30, ErrorMessage = "Title too long. Must be under 30 characters")]
         public string Title { get; set; }
         public string Description { get; set; }
         [Required]
@@ -105,25 +107,45 @@ namespace IP3Project.Models
 
     }
 
-    public class Attachment
+    public class Attachment : PutViewModel
     {
 
-        public string Id { get; set; }
+        public string AttachmentId { get; set; }
         public string Title { get; set; }
         public string TimelineEventId { get; set; }
+
+        public Attachment()
+        {
+
+        }
+
+        public Attachment(string tempId, string title, string EventId)
+        {
+            AttachmentId = tempId;
+            Title = title;
+            TimelineEventId = EventId;
+        }
         
     }
 
     public class CreateAttachment
     {
-        public string Id { get; set; }
-        public string Title { get; set; }
+        public IFormFile File { get; set; }
         public string TimelineEventId { get; set; }
 
-        public CreateAttachment(string id, string title, string timelineEventId)
+        public CreateAttachment(IFormFile file, string timelineEventId)
         {
-            id = Id;
-            title = Title;
+            File = file;
+            timelineEventId = TimelineEventId;
+        }
+
+        public CreateAttachment()
+        {
+
+        }
+
+        public CreateAttachment(string timelineEventId)
+        {
             timelineEventId = TimelineEventId;
         }
 
@@ -211,6 +233,7 @@ namespace IP3Project.Models
     {
         public string TimelineEventId { get; set; }
         [Required]
+        [StringLength(30, ErrorMessage = "Title too long. Must be under 30 characters")]
         public string Title { get; set; }
 
         public EditTitle(string Id, string title)

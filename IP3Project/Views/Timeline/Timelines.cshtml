@@ -14,7 +14,7 @@
     @{
 
 
-        if (Model.Timelines.Count == 0 && ViewData["currentFilter"] == null)
+        if (ViewBag.OnePageOfProducts.Count == 0 && ViewData["currentFilter"] == null)
         {
             <div id="partialTimelineRegister">
                 <h3>You have not created a timeline yet! </h3>
@@ -34,10 +34,6 @@
 
         }
     }
-
-
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
 
     <script src="~/js/timelines.js"></script>
 

@@ -38,15 +38,6 @@ namespace IP3Project.Models
 
     }
 
-    public class TimelineInputModel
-    {
-
-        [Required]
-        [StringLength(30, ErrorMessage = "Title too long. Must be under 30 characters")]
-        [Display(Name = "Timeline Name")]
-        public string TimlineName { get; set; }
-
-    }
 
     /// <summary>
     /// A Viewmodel that will contain a List of TimelineViewModels for output
@@ -82,15 +73,20 @@ namespace IP3Project.Models
         {
         }
 
+        public CreateEditViewModel(string Id,string title)
+        {
+            TimelineId = Id;
+            Title = title;
+        }
+
         public CreateEditViewModel(string Id)
         {
             TimelineId = Id;
         }
 
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         [Required]
-        [StringLength(30)]
+        [StringLength(50, ErrorMessage = "Title too long. Must be under 50 characters")]
         [Display(Name = "Timeline Title")]
         public string Title { get; set; }
 

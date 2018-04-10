@@ -1,226 +1,138 @@
-﻿html, body {
-    height: 100%;
-}
-
-timeline-body {
-    font-family: "Quicksand", sans-serif;
-    font-weight: 500;
-    color: #424949;
-    background-color: #ECF0F1;
-    padding: 10vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.flex-parent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+﻿.timeline-wrapper {
     width: 100%;
-    height: 100%;
-}
-
-.input-flex-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 80vw;
-    height: 100px;
-    max-width: 1000px;
+    height: 500px;
+    margin: 0 auto;
     position: relative;
-    z-index: 0;
 }
 
-.input {
-    width: 25px;
-    height: 25px;
-    background-color: #2C3E50;
+.timeline-area {
+    width: 100%;
+    height: 75%;
+    margin: 0;
+    background-color: #eeeeee;
+    padding: 100px 75px 100px;
+    text-align: center;
+    overflow-x: scroll;
+    white-space: nowrap;
     position: relative;
-    border-radius: 50%;
 }
 
-    .input:hover {
+.timeline-ruler {
+    position: relative;
+    top: 150px;
+    width: 100%;
+    height: 3px;
+    background-color: #000000;
+    opacity: 0.5;
+    box-shadow: inset 40px 0px 20px -20px #eeeeee, inset -40px 0px 20px -20px #eeeeee;
+    z-index: 1;
+}
+
+.ruler-active {
+    position: absolute;
+    right: 30px;
+    top: 33px;
+    width: 150px;
+    height: 3px;
+    opacity: 1;
+    z-index: 1;
+    display: none;
+}
+
+    .ruler-active:active {
+        background-color: #4d9ce6;
+    }
+
+.event {
+    margin: 0px 20px 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+    width: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+    .event::after {
+        content: '';
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        top: 15px;
+        left: 31%;
+        bottom: 0;
+        background-color: white;
+        border: 2px solid #2e2e2e;
+        border-radius: 50%;
+        z-index: 2;
+        overflow: hidden;
+        transition: 0.5s;
+    }
+
+    .event:hover::after {
+        transform: scale(1.2);
+        background: #4d9ce6;
+        box-shadow: 0px 0px 10px #CCC;
+        border: 2px solid #ffffff;
         cursor: pointer;
     }
 
-    .input::before, .input::after {
-        content: "";
-        display: block;
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: #2C3E50;
-        width: 4vw;
-        height: 5px;
-        max-width: 50px;
-    }
-
-    .input::before {
-        left: calc(-4vw + 12.5px);
-    }
-
-    .input::after {
-        right: calc(-4vw + 12.5px);
-    }
-
-    .input.active {
-        background-color: #2C3E50;
-    }
-
-        .input.active::before {
-            background-color: #2C3E50;
-        }
-
-        .input.active::after {
-            background-color: #AEB6BF;
-        }
-
-        .input.active span {
-            font-weight: 700;
-        }
-
-            .input.active span::before {
-                font-size: 13px;
-            }
-
-            .input.active span::after {
-                font-size: 15px;
-            }
-
-        .input.active ~ .input, .input.active ~ .input::before, .input.active ~ .input::after {
-            background-color: #AEB6BF;
-        }
-
-    .input span {
-        width: 1px;
-        height: 1px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        visibility: hidden;
-    }
-
-        .input span::before, .input span::after {
-            visibility: visible;
-            position: absolute;
-            left: 50%;
-        }
-
-        .input span::after {
-            content: attr(data-year);
-            top: 25px;
-            /*transform: translateX(-50%);*/
-            font-size: 14px;
-        }
-
-        .input span::before {
-            content: attr(data-info);
-            top: -65px;
-            width: 70px;
-            /*transform: translateX(-5px) rotateZ(-45deg);*/
-            font-size: 12px;
-            text-indent: -10px;
-        }
-
-.description-flex-container {
-    width: 80vw;
-    font-weight: 400;
-    font-size: 22px;
-    margin-top: 100px;
+.event-content {
+    position: absolute;
+    vertical-align: top;
+    left: 0;
+    bottom: -10px;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    max-width: 150px;
+    padding: 0px 10px 0px;
+    /*background-color: #d8d8d8;*/
 }
 
-    .description-flex-container p {
-        margin-top: 0;
-        display: none;
-    }
-
-        .description-flex-container p.active {
-            display: block;
-        }
-
-@media (min-width: 1250px) {
-    .input::before {
-        left: -37.5px;
-    }
-
-    .input::after {
-        right: -37.5px;
-    }
+.event-date {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    max-width: 100px;
+    /*background-color: #d8d8d8;*/
 }
 
-@media (max-width: 850px) {
-    .input {
-        width: 17px;
-        height: 17px;
-    }
-
-        .input::before, .input::after {
-            height: 3px;
-        }
-
-        .input::before {
-            left: calc(-4vw + 8.5px);
-        }
-
-        .input::after {
-            right: calc(-4vw + 8.5px);
-        }
+.pointer {
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    text-align: center;
+    background-color: #000;
 }
 
-@media (max-width: 600px) {
-    .flex-parent {
-        justify-content: initial;
-    }
-
-    .input-flex-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        margin-top: 15vh;
-    }
-
-    .input {
-        width: 60px;
-        height: 60px;
-        margin: 0 10px 50px;
-        background-color: #AEB6BF;
-    }
-
-        .input::before, .input::after {
-            content: none;
-        }
-
-        .input span {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-            .input span::before {
-                top: calc(100% + 5px);
-                transform: translateX(-50%);
-                text-indent: 0;
-                text-align: center;
-            }
-
-            .input span::after {
-                top: 50%;
-                transform: translate(-50%, -50%);
-                color: #ECF0F1;
-            }
-
-    .description-flex-container {
-        margin-top: 30px;
-        text-align: center;
-    }
+.first-event-btn {
+    width: 50px;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+    float: left;
+    position: fixed;
+    top: 0;
+    left: 1;
+    overflow: hidden;
 }
 
-@media (max-width: 400px) {
-    timeline-body {
-        min-height: 950px;
-    }
+.last-event-btn {
+    width: 50px;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+    float: right;
+    position: fixed;
+    top: 0;
+    right: 1;
+    overflow: hidden;
 }

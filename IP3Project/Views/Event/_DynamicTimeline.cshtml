@@ -2,28 +2,62 @@
 <!-- https://codepen.io/cjl750/pen/mXbMyo -->
 <!-- http://freefrontend.com/css-timelines/#horizontal-timelines -->
 
+<head>
+    <link rel="stylesheet" type="text/css" href="dynamicTimelineStyle.css">
+</head>
 
 <h2>@Model.Title</h2>
 <h3>Creation Date: @Model.GetDateTime()</h3>
 @Html.ActionLink("Create New Event", "CreateEvent", "Event", new { Id = Model.Id }, new { @class = "modal-link btn btn-primary btn-large" })
-<br/>
-<timeline-body>
+<br />
+<br />
 
-    <div class="flex-parent">
-        <div class="input-flex-container">
-            @foreach (var x in Model.TimelineEvents)
-            {
-                <div class="input" id="@x.Id">
-                    <span data-year="@x.GetDateTime(x.EventDateTime)" data-info="@x.Title"></span>
-                </div>
-            }
+<div class="timeline-wrapper">
+
+    <div class="timeline-ruler"></div>
+
+    <div class="timeline-area">
+
+        @foreach (var x in Model.TimelineEvents)
+        {
+
+        <div class="event" id="@x.Id">
+            <div class="event-content">
+                <h3>@x.Title</h3>
+            </div>
+            <div class="event-date">
+                <div class="pointer"></div>
+                <h3>@x.GetDateTime(x.EventDateTime)</h3>
+            </div>
+        </div>
+        
+}
+    </div>
+</div>
+
+<script type="text/JavaScript" src="dynamicTimelineJS.js"></script>
+
+@*<h2>@Model.Title</h2>
+    <h3>Creation Date: @Model.GetDateTime()</h3>
+    @Html.ActionLink("Create New Event", "CreateEvent", "Event", new { Id = Model.Id }, new { @class = "modal-link btn btn-primary btn-large" })
+    <br />
+    <timeline-body>
+
+        <div class="flex-parent">
+            <div class="input-flex-container">
+                @foreach (var x in Model.TimelineEvents)
+                {
+                    <div class="input" id="@x.Id">
+                        <span data-year="@x.GetDateTime(x.EventDateTime)" data-info="@x.Title"></span>
+                    </div>
+                }
+            </div>
+
+
+
         </div>
 
 
-
-    </div>
-
-
-</timeline-body>
+    </timeline-body>*@
 
 

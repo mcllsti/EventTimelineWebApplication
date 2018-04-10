@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using IP3Project.Models;
@@ -27,15 +29,19 @@ namespace IP3Project.Controllers
         [HttpPost]
         public IActionResult EditDescription(EditDescription model)
         {
-            EditDescriptionCall(model);
+            string succsess = EditDescriptionCall(model);
+            if (!succsess.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
 
-        private void EditDescriptionCall(EditDescription model)
+        private string EditDescriptionCall(EditDescription model)
         {
             var request = new RestRequest("TimelineEvent/EditDescription");
-            API.PutRequest(request, model);
+            return API.PutRequest(request, model);
         }
 
         #endregion
@@ -52,17 +58,30 @@ namespace IP3Project.Controllers
         [HttpPost]
         public IActionResult EditDate(EditDate model)
         {
-            EditDateCall(model);
+            string succsess = EditDateCall(model);
+            if (!succsess.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
 
-        private void EditDateCall(EditDate model)
+        private string EditDateCall(EditDate model)
         {
             model.EventDateTime.ToString();
-            model.EventDateTime = DateTime.Parse(model.EventDateTime).Ticks.ToString();
+            CultureInfo ukCulture = new CultureInfo("en-GB");
+            try
+            {
+                model.EventDateTime = DateTime.Parse(model.EventDateTime, ukCulture.DateTimeFormat).Ticks.ToString();
+            }
+            catch
+            {
+                return "error";
+            }
+
             var request = new RestRequest("TimelineEvent/EditEventDateTime");
-            API.PutRequest(request, model);
+            return API.PutRequest(request, model);
         }
 
         #endregion
@@ -79,22 +98,29 @@ namespace IP3Project.Controllers
         [HttpPost]
         public IActionResult EditLocation(EditLocation model)
         {
-            EditLocationCall(model);
+            string succsess = EditLocationCall(model);
+            if(!succsess.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
 
-        private void EditLocationCall(EditLocation model)
+        private string EditLocationCall(EditLocation model)
         {
             var request = new RestRequest("TimelineEvent/EditLocation");
-            API.PutRequest(request, model);
+            return API.PutRequest(request, model);
         }
 
         public IActionResult RemoveLocation(string Id)
         {
             EditLocation model = new EditLocation(Id, null);
             var request = new RestRequest("TimelineEvent/EditLocation");
-            API.PutRequest(request, model);
+            if(!(API.PutRequest(request, model)).Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
         }
 
@@ -103,8 +129,6 @@ namespace IP3Project.Controllers
         #endregion
 
         #region Title
-
-        #endregion
         [HttpGet]
         public PartialViewResult EditTitle(string Id, string Title)
         {
@@ -116,16 +140,24 @@ namespace IP3Project.Controllers
         [HttpPost]
         public IActionResult EditTitle(EditTitle model)
         {
-            EditTitleCall(model);
+            string succsess = EditTitleCall(model);
+            if (!succsess.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
 
-        private void EditTitleCall(EditTitle model)
+        private string EditTitleCall(EditTitle model)
         {
             var request = new RestRequest("TimelineEvent/EditTitle");
-            API.PutRequest(request, model);
+            return API.PutRequest(request, model);
         }
+
+        #endregion
+
+
         #endregion
 
 
@@ -144,8 +176,19 @@ namespace IP3Project.Controllers
         [HttpPost]
         public IActionResult CreateEvent(CreateEventView model)
         {
-            Create(model);
-            Link(model);
+            string successful;
+            successful = Create(model);
+            if(!successful.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
+            successful = Link(model);
+
+            if (!successful.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
+
             return RedirectToAction("TimelineView", new { id = model.TimelineId }); //returns to the Index!
 
         }
@@ -154,9 +197,19 @@ namespace IP3Project.Controllers
         #region Delete
         public IActionResult DeleteEvent(string Id)
         {
+
             string TimelineId = GetTimelineID(Id);
-            UnlinkEvent(TimelineId, Id);
-            Delete(Id);
+            string success;
+            success = UnlinkEvent(TimelineId, Id);
+            if (!success.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
+            success = Delete(Id);
+            if(!success.Equals("OK"))
+            {
+                return RedirectToAction("APIError");
+            }
 
             return RedirectToAction("TimelineView", new { id = TimelineId }); //returns to the Index!
         }
@@ -169,7 +222,20 @@ namespace IP3Project.Controllers
         {
             Timeline model = new Timeline(id);
             model = GetTimeline(model);
-            model.TimelineEvents = GetEvents(id).Events;
+
+            if(model == null)
+            {
+                
+            }
+            try
+            {
+                model.TimelineEvents = GetEvents(id).Events;
+            }
+            catch
+            {
+                return RedirectToAction("APIError");
+            }
+
 
             return View(model);
         }
@@ -188,6 +254,10 @@ namespace IP3Project.Controllers
         {
             Event EventToDisplay = new Event();
             EventToDisplay = GetEvent(Id);
+            if(EventToDisplay == null)
+            {
+                return RedirectToAction("APIError");
+            }
 
             return PartialView("_EventView", EventToDisplay);
         }
@@ -195,15 +265,15 @@ namespace IP3Project.Controllers
 
         #region Utility
 
-        private CreateEventView Link(CreateEventView EventToLink)
+        private string Link(CreateEventView EventToLink)
         {
 
             TimelineEventLink LinkToCreate = new TimelineEventLink(EventToLink.TimelineId, EventToLink.TimelineEventId);
 
             var request = new RestRequest("/Timeline/LinkEvent");
-            API.PutRequest(request, LinkToCreate);
+            string success = API.PutRequest(request, LinkToCreate);
 
-            return EventToLink;
+            return success;
 
         }
 
@@ -214,18 +284,32 @@ namespace IP3Project.Controllers
             request.AddHeader("TimelineId", model.Id);
 
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+            try
+            {
+                model = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
+            }
+            catch
+            {
+                model = null;
+            }
 
-            model = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
 
             return model;
         }
 
+
+
         private EventList GetEvents(string Id)
         {
+            EventList model = new EventList();
             TimelineList resultsDTO = new TimelineList();
             resultsDTO = GetSystemData();
 
-            EventList model = new EventList();
+            if(resultsDTO == null)
+            {
+                model = null;
+                return model;
+            }
 
             List<Event> EventsList = new List<Event>();
 
@@ -241,8 +325,10 @@ namespace IP3Project.Controllers
         {
             var request = new RestRequest("Timeline/GetAllTimelinesAndEvent"); //setting up the request params
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
-
+            
             var resultsDTO = JsonConvert.DeserializeObject<TimelineList>(response.Content); //Deserializes the results from the response
+
+            if (!response.StatusDescription.Equals("OK")) { resultsDTO = null; }
 
             return resultsDTO;
 
@@ -259,12 +345,13 @@ namespace IP3Project.Controllers
             return timeline.Id;
         }
 
-        private void Delete(string Id)
+        private string Delete(string Id)
         {
             DeleteEventViewModel delete = new DeleteEventViewModel(Id);
             var request = new RestRequest("TimelineEvent/Delete");
 
-            API.PutRequest(request, delete);
+            return API.PutRequest(request, delete);
+
         }
 
         private Event GetEvent(string Id)
@@ -276,7 +363,11 @@ namespace IP3Project.Controllers
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
 
             var model = JsonConvert.DeserializeObject<Event>(response.Content); //Deserializes the results from the response
-
+            if(!response.StatusDescription.Equals("OK"))
+            {
+                model = null;
+                return model;
+            }
             List<Attachment> Attachments = new List<Attachment>();
             model.Attachments = GetEventAttachments(Id);
 
@@ -301,34 +392,44 @@ namespace IP3Project.Controllers
             return model;
         }
 
-        private void UnlinkEvent(string TimelineId, string EventId)
+        private string UnlinkEvent(string TimelineId, string EventId)
         {
             var request = new RestRequest("Timeline/UnlinkEvent");
             TimelineEventLink Unlink = new TimelineEventLink(TimelineId, EventId);
 
-            API.PutRequest(request, Unlink);
+            return API.PutRequest(request, Unlink);
 
         }
 
-        private CreateEventView Create(CreateEventView EventToCreate)
+        private string Create(CreateEventView EventToCreate)
         {
             var request = new RestRequest("TimelineEvent/Create");
 
             EventToCreate.TimelineEventId = Guid.NewGuid().ToString();
+            CultureInfo ukCulture = new CultureInfo("en-GB");
             EventToCreate.EventDateTime.ToString();
-            EventToCreate.EventDateTime = DateTime.Parse(EventToCreate.EventDateTime).Ticks.ToString();
+            try
+            {
+                EventToCreate.EventDateTime = DateTime.Parse(EventToCreate.EventDateTime, ukCulture.DateTimeFormat).Ticks.ToString();
+            }
+            catch {
 
-            API.PutRequest(request, EventToCreate);
+                EventToCreate.EventDateTime = null;
+                EventToCreate.Title = null;
+            }
 
-            return EventToCreate;
+
+            string success = API.PutRequest(request, EventToCreate);
+
+            return success;
 
         }
 
-        public PartialViewResult UploadAttachmentView(string id)
+        public PartialViewResult UploadAttachmentView(string Id)
         {
 
-            CreateAttachment model = new CreateAttachment(null, null, id);
-
+            CreateAttachment model = new CreateAttachment(Id);
+            model.TimelineEventId = Id;
             return PartialView("_UploadAttachment", model);
         }
 

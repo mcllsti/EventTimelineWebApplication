@@ -1,7 +1,7 @@
 ﻿//// Write your JavaScript code.
 
 $(function () {
-    var inputs = $('.input');
+    var inputs = $('.event');
     var paras = $('.description-flex-container').find('p');
 
     $(inputs).click(function () {
