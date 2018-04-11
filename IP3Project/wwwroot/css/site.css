@@ -36,18 +36,28 @@ body {
 /*==========================*/
 
 .navbar {
-    background-color: #eeeeee;
-    box-shadow: 0px 3px 5px #a5a5a5;
-    border: none;
+    background-color: #f6f6f6;
+    /*box-shadow: 0px 2px 5px #cacaca;*/
+    border-bottom: 1px solid #c1c1c1;
+    padding: 5px 0 5px;
+    text-align: center;
 }
 
 .navbar ul {
-    float: right;
+    display: inline-block;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #8b8b8b;
+    padding-left: 20px;
 }
 
-.navbar li {
-    color: #000;
-}
+    .navbar li a {
+        color: #8b8b8b;
+    }
+
+        .navbar li a:hover {
+            color: #0073cc;
+        }
 
 .logoImg {
     padding-top: 5px;
@@ -94,7 +104,12 @@ body {
 }
 
 .bannerImg {
-    max-width: 600px;
+    width: 75vh;
+    height: auto;
+}
+
+.airtek-banner-img {
+    width: 25vh;
     height: auto;
 }
 
@@ -267,4 +282,47 @@ footer {
     padding: 2px;
 }
 
+.btn-empty-case-add {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    padding: 5px 0 0;
+    font-size: 64px;
+    background-color: #0073cc;
+    border-radius: 100%;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+    transition: 0.5s;
+    text-decoration: none;
+}
 
+.btn-empty-case-add a {
+    color: #ffffff;
+    text-decoration:none;
+}
+
+    .btn-empty-case-add:hover {
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        border: 1px solid #000000;
+        text-align: center;
+        vertical-align: middle;
+        color: #0073cc;
+        transform: scale(1.1);
+        text-decoration: none;
+        box-shadow: #d4d4d4 0px 0px 20px;
+    }
+
+.timeline-register-emptycase {
+    padding: 25px;
+}
+
+.push-to-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    text-align: center;
+}

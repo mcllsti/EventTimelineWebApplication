@@ -1,5 +1,6 @@
 ﻿@model TimelineList
 
+
 @{
     ViewData["Title"] = "Timelines";
 }
@@ -16,12 +17,19 @@
 
         if (ViewBag.OnePageOfProducts.Count == 0 && ViewData["currentFilter"] == null)
         {
-            <div id="partialTimelineRegister">
-                <h3>You have not created a timeline yet! </h3>
-                @{
-                    @Html.ActionLink("Create one now!", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn btn-primary btn-large" }) //GAVIN EDIT THE CLASS TYPE HERE FOR A NICER BUTTON PLEASE;
-                }
+
+            <div class="container">
+                <div class="pageContent">
+                    <h3>You have not created a timeline yet! </h3>
+                    <p>Create one now!</p>
+                    <div class="timeline-register-emptycase">
+                        @{
+                            @Html.ActionLink("+", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn-empty-case-add" }) //GAVIN EDIT THE CLASS TYPE HERE FOR A NICER BUTTON PLEASE;
+                        }
+                    </div>
+                </div>
             </div>
+
         }
         else
         {

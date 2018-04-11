@@ -13291,11 +13291,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\GaMac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3daryl\\ip3project\\IP3Project\\IP3Project.csproj",
+      "projectUniqueName": "C:\\Users\\GaMac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3project\\IP3Project\\IP3Project.csproj",
       "projectName": "IP3Project",
-      "projectPath": "C:\\Users\\GaMac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3daryl\\ip3project\\IP3Project\\IP3Project.csproj",
+      "projectPath": "C:\\Users\\GaMac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3project\\IP3Project\\IP3Project.csproj",
       "packagesPath": "C:\\Users\\GaMac\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GaMac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3daryl\\ip3project\\IP3Project\\obj\\",
+      "outputPath": "C:\\Users\\GaMac\\OneDrive\\GCU\\IntigratedProject\\ProjectFiles\\ip3project\\IP3Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
