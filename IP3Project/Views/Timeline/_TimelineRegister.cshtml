@@ -20,8 +20,8 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th style="width: 37%" scope="col"><a asp-action="Timelines" asp-route-sortOrder="@ViewData["NameSortParm"]">Title</a></th>
-                    <th class="text-center" scope="col"><a asp-action="Timelines" asp-route-sortOrder="@ViewData["DateSortParm"]">Date/Time</a></th>
+                    <th style="width: 50%; font-size:16pt" scope="col"><a asp-action="Timelines" asp-route-sortOrder="@ViewData["NameSortParm"]">Title</a></th>
+                    <th style="font-size:16pt" class="text-center" scope="col"><a asp-action="Timelines" asp-route-sortOrder="@ViewData["DateSortParm"]">Date/Time</a></th>
 
                     <th class="text-right" scope="col">@Html.ActionLink("Create New", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn btn-primary btn-large" })</th>
                 </tr>
@@ -43,8 +43,8 @@
                         <div class="dropdown">
                             <div class="dropbtn glyphicon glyphicon-cog"></div>
                             <div class="dropdown-content">
+                                @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id, Title = x.Title }, new { @class = "modal-link" })
                                 @Html.ActionLink("Delete", "Delete", new { Id = x.Id })
-                                @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id , Title = x.Title}, new { @class = "modal-link" })
                             </div>
                         </div>
                     </td>

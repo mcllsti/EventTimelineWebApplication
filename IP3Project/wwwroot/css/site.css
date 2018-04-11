@@ -33,7 +33,7 @@ body {
 
 
 /*======= Navbar ========*/
-/*==========================*/
+/*=======================*/
 
 .navbar {
     background-color: #f6f6f6;
@@ -65,6 +65,7 @@ body {
     height: auto;
     display: inline-block;
     align-content: center;
+    transition: 0.5s;
 }
 
     .logoImg:hover {
@@ -74,7 +75,8 @@ body {
 /*======= End of Navbar ========*/
 
 
-
+/*======= Timeline Register ========*/
+/*==================================*/
 
 .timelineRegister {
     text-align: center;
@@ -83,6 +85,27 @@ body {
     padding: 10px;
 }
 
+.timeline-register-emptycase {
+    padding: 25px;
+}
+
+/*======= End of Timeline Register ========*/
+
+
+/*Event View*/
+.event-view-box {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    background-color: #f6f6f6;
+    box-shadow: #c6c6c6 0 0 10px;
+    padding: 30px 75px 100px;
+    text-align: left;
+    border-radius: 15px;
+}
+
+/*======= Landing Page ========*/
+/*=============================*/
 .pageHeading {
     position: absolute;
     top: 50%;
@@ -112,6 +135,8 @@ body {
     width: 25vh;
     height: auto;
 }
+/*======= End of Landing Page ========*/
+
 
 .text-right {
     text-align-last: right;
@@ -207,13 +232,15 @@ footer {
 }
 
 #map {
+    width: 100%;
     height: 400px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px;
 }
 
 #mapDisplay {
+    width: 100%;
     height: 400px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px;
 }
 
 
@@ -263,24 +290,55 @@ footer {
         border-color: #4d90fe;
     }
 
+.pagination-container {
+    text-align: center;
+}
+
+
+/*======= ATTACHMENTS ========*/
+/*============================*/
 .attachment-box{
-    max-width: 75%;
+    max-width: 100%;
     height: auto;
     padding: 10px;
-    background-color: #ddd;
+    background-color: #e8e8e8;
     border: 2px, solid, #009aff;
     display: block;
+    border-radius: 15px;
+}
+
+.attachment-box hr {
+    background-color: #000;
+    color: #000;
 }
 
 .attachment-file {
-    width: 20px;
-    height: 20px;
-    background-color: #eeeeee;
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff;
     border: 1px, solid, #000;
-    box-shadow: 0px 3px 5px #a5a5a5;
+    border-radius: 5px;
+    box-shadow: #c6c6c6 0 0 10px;
+    white-space: normal;
+    overflow: hidden;
     text-align: center;
-    padding: 2px;
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    align-content: center;
 }
+
+.file-thumbnail {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #a5a5a5;
+    text-align: center;
+    box-shadow: 0px 2px 2px #a5a5a5;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+/*============================*/
 
 .btn-empty-case-add {
     display: inline-block;
@@ -316,13 +374,30 @@ footer {
         box-shadow: #d4d4d4 0px 0px 20px;
     }
 
-.timeline-register-emptycase {
-    padding: 25px;
-}
 
 .push-to-bottom{
-    position: absolute;
     bottom: 0;
     left: 50%;
     text-align: center;
 }
+
+.danger-zone {
+    margin: 100px 0 0;
+    width: 100%;
+    height: auto;
+    border: 2px solid #d9534f;
+    padding: 20px 10% 20px;
+    text-align: center;
+}
+
+    .danger-zone h3 {
+        width: 200px;
+        height: auto;
+        margin-top: -30px;
+        margin-left: 0px;
+        background-color: #f6f6f6;
+        text-align: center;
+        color: #d9534f;
+        font-weight: bold;
+        font-size: 16px;
+    }

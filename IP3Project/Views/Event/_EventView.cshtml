@@ -1,52 +1,50 @@
 ﻿@model IP3Project.Models.Event
 
-<div>
+<div class="event-view-box">
     <h1>@Html.DisplayFor(model => model.Title) @Html.ActionLink("", "EditTitle", new { Id = Model.Id, Title = Model.Title }, new { @class = "modal-link glyphicon glyphicon-edit" })</h1>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EventDateTime)
-        </dt>
-        <dd>
-            @Model.GetDateTime(Model.EventDateTime) @Html.ActionLink("", "EditDate", new { Id = Model.Id, Date = Model.EventDateTime }, new { @class = "modal-link glyphicon glyphicon-edit" })
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)  @Html.ActionLink("", "EditDescription", new { Id = Model.Id, Description = Model.Description }, new { @class = "modal-link glyphicon glyphicon-edit" })
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)  @Html.ActionLink("", "EditLocation", new { Id = Model.Id, Location = Model.Location }, new { @class = "modal-link glyphicon glyphicon-edit" })
 
-            @{if (Model.Location != null)
-                { @Html.ActionLink("", "RemoveLocation", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-trash" }) } }
+    <div>
+        <h3>Date/Time:</h3>
+        @Model.GetDateTime(Model.EventDateTime) @Html.ActionLink("", "EditDate", new { Id = Model.Id, Date = Model.EventDateTime }, new { @class = "modal-link glyphicon glyphicon-edit" })
 
-            @{if (Model.Location != null)
-                { <div id="mapDisplay"></div>} }
+        <h3>Description:</h3>
+        @Html.DisplayFor(model => model.Description)  @Html.ActionLink("", "EditDescription", new { Id = Model.Id, Description = Model.Description }, new { @class = "modal-link glyphicon glyphicon-edit" })
 
-        </dd>
-    </dl>
+    </div>
+
+    <hr />
+    <h3>Location</h3>
+    @Html.DisplayFor(model => model.Location)  @Html.ActionLink("", "EditLocation", new { Id = Model.Id, Location = Model.Location }, new { @class = "modal-link glyphicon glyphicon-edit" })
+
+    @{if (Model.Location != null)
+        { @Html.ActionLink("", "RemoveLocation", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-trash" }) } }
+
+    @{if (Model.Location != null)
+        { <div id="mapDisplay"></div>} }
+    <hr />
+
+
     <br />
     <h3>@Html.DisplayNameFor(model => model.Attachments)</h3>
     <div class="attachment-box">
-
         @Html.ActionLink("Add Attachment", "UploadAttachmentView", "Event", new { id = Model.Id }, new { @class = "modal-link btn btn-primary btn-large" })
         <br />
 
         @if (Model.Attachments.Any())
         {
+            <hr />
             foreach (var x in Model.Attachments)
             {
-                <hr />
-                <section>
-                    @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title }, new { @class = "attachment-file" })
-                </section>
-                <hr />
+                <div class="attachment-file">
+                    <div class="file-thumbnail">
+                        <!--If we can figure out thumbnails for files, we would put it here-->
+                        <div class="glyphicon glyphicon-file"></div>
+                    </div>
+                    @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title })
+                </div>
             }
+            <hr />
         }
         else
         {
@@ -56,10 +54,13 @@
         }
     </div>
 
+    <div class="danger-zone">
+        <h3>WARNING - Danger Zone</h3>
+        @Html.ActionLink("Delete Event", "DeleteEvent", "Event", new { Id = Model.Id }, new { @class = "btn btn-danger" })
+    </div>
+
 </div>
-<div>
-    @Html.ActionLink("Delete Event", "DeleteEvent", "Event", new { Id = Model.Id }, new { @class = "btn-default" } ) 
-</div>
+
 
 
 

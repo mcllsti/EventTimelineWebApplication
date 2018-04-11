@@ -9,12 +9,14 @@
     width: 100%;
     height: 75%;
     margin: 0;
-    background-color: #eeeeee;
+    background-color: #f6f6f6;
+    box-shadow: #c6c6c6 0 0 10px;
     padding: 100px 75px 100px;
     text-align: center;
     overflow-x: scroll;
     white-space: nowrap;
     position: relative;
+    border-radius: 15px;
 }
 
 .timeline-ruler {
@@ -59,7 +61,7 @@
         width: 35px;
         height: 35px;
         top: 15px;
-        left: 31%;
+        left: 33%;
         bottom: 0;
         background-color: white;
         border: 2px solid #2e2e2e;
@@ -81,13 +83,13 @@
     position: absolute;
     vertical-align: top;
     left: 0;
+    right: 0;
     bottom: -10px;
     white-space: normal;
     word-wrap: break-word;
     text-align: center;
     max-width: 150px;
     padding: 0px 10px 0px;
-    /*background-color: #d8d8d8;*/
 }
 
 .event-date {
@@ -99,7 +101,6 @@
     word-wrap: break-word;
     text-align: center;
     max-width: 100px;
-    /*background-color: #d8d8d8;*/
 }
 
 .pointer {
