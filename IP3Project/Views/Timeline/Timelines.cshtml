@@ -11,7 +11,7 @@
     <div class="pageContent">
         <h1>Timelines</h1>
     </div>
-
+    <hr />
     @{
 
 
@@ -24,7 +24,7 @@
                     <p>Create one now!</p>
                     <div class="timeline-register-emptycase">
                         @{
-                            @Html.ActionLink("+", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn-empty-case-add" }) //GAVIN EDIT THE CLASS TYPE HERE FOR A NICER BUTTON PLEASE;
+                            @Html.ActionLink("+", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn-empty-case-add" })
                         }
                     </div>
                 </div>
@@ -42,6 +42,11 @@
 
         }
     }
+
+    <div id="modal-container" class="modal fade">
+        <div class="modal-content">
+        </div>
+    </div>
 
     <script src="~/js/timelines.js"></script>
 

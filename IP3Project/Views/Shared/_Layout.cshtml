@@ -43,14 +43,17 @@
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
         @RenderBody()
-        <div class="push-to-bottom">
-            <footer>
-                <p>AyrTek Systems &copy; 2018</p>
-            </footer>
-        </div>
     </div>
+    
+    <footer>
+        <hr />
+        <p>AyrTek Systems &copy; 2018</p>
+        <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+        <a asp-area="" asp-controller="Home" asp-action="Help">Help</a>
+    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -77,5 +80,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
 </body>
+
 </html>

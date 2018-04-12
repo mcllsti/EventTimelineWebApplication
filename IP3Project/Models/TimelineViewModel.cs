@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace IP3Project.Models
 {
 
-
     public class Timeline 
     {
         public string Id { get; set; }

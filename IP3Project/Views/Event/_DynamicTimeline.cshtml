@@ -12,10 +12,21 @@
 <br />
 <br />
 
+@if (Model.TimelineEvents.Count == 0)
+{
+<div class="timeline-wrapper">
+    <div class="timeline-area">
+        <h2>There are no events on this timeline!</h2>
+        <h3>Press "Create New Event" to add a new event!</h3>
+    </div>
+</div>
+}
+else
+{
 <div class="timeline-wrapper">
 
     <div class="timeline-ruler"></div>
-
+    <div id="line"></div>
     <div class="timeline-area">
 
         @foreach (var x in Model.TimelineEvents)
@@ -23,41 +34,18 @@
 
         <div class="event" id="@x.Id">
             <div class="event-content">
-                <h3>@x.Title</h3>
+                <h4>@x.Title</h4>
             </div>
             <div class="event-date">
-                <div class="pointer"></div>
-                <h3>@x.GetDateTime(x.EventDateTime)</h3>
+                <h4>@x.GetDateTime(x.EventDateTime)</h4>
             </div>
         </div>
-        
-}
+
+        }
     </div>
 </div>
 
-<script type="text/JavaScript" src="dynamicTimelineJS.js"></script>
-
-@*<h2>@Model.Title</h2>
-    <h3>Creation Date: @Model.GetDateTime()</h3>
-    @Html.ActionLink("Create New Event", "CreateEvent", "Event", new { Id = Model.Id }, new { @class = "modal-link btn btn-primary btn-large" })
-    <br />
-    <timeline-body>
-
-        <div class="flex-parent">
-            <div class="input-flex-container">
-                @foreach (var x in Model.TimelineEvents)
-                {
-                    <div class="input" id="@x.Id">
-                        <span data-year="@x.GetDateTime(x.EventDateTime)" data-info="@x.Title"></span>
-                    </div>
-                }
-            </div>
-
-
-
-        </div>
-
-
-    </timeline-body>*@
+<script type="text/JavaScript" src="dynamicTimeline.js"></script>
+}
 
 

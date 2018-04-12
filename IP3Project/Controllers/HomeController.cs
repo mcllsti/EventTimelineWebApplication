@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using IP3Project.Models;
-using RestSharp;
-using Newtonsoft.Json;
 
 
 namespace IP3Project.Controllers
 {
+    /// <summary>
+    ///Author: Team16, Microsoft
+    ///Date: Trimester 2, 2018 
+    ///Version: 1.0 
+    /// 
+    /// Auto-Generated controller by Microsoft MVC that returns Index, About, Help and Error pages.
+    /// This code has remained unedited. 
+    /// </summary>
     public class HomeController : BaseController
     {
         public IActionResult Index()

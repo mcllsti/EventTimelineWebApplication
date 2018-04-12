@@ -1,27 +1,42 @@
 ﻿@model IP3Project.Models.Event
 
+
+<div class="loader-img">
+    <img src="~/images/ajax-loader.gif" alt="Loading..."/>
+</div>
+
 <div class="event-view-box">
-    <h1>@Html.DisplayFor(model => model.Title) @Html.ActionLink("", "EditTitle", new { Id = Model.Id, Title = Model.Title }, new { @class = "modal-link glyphicon glyphicon-edit" })</h1>
+
+    <h1>@Html.DisplayFor(model => model.Title) @Html.ActionLink("", "EditTitle", new { Id = Model.Id, Title = Model.Title }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h1>
     <hr />
 
     <div>
-        <h3>Date/Time:</h3>
-        @Model.GetDateTime(Model.EventDateTime) @Html.ActionLink("", "EditDate", new { Id = Model.Id, Date = Model.EventDateTime }, new { @class = "modal-link glyphicon glyphicon-edit" })
+        <h3>Date/Time: @Html.ActionLink("", "EditDate", new { Id = Model.Id, Date = Model.EventDateTime }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h3>
+        @Model.GetDateTime(Model.EventDateTime)
 
-        <h3>Description:</h3>
-        @Html.DisplayFor(model => model.Description)  @Html.ActionLink("", "EditDescription", new { Id = Model.Id, Description = Model.Description }, new { @class = "modal-link glyphicon glyphicon-edit" })
+        <h3>Description: @Html.ActionLink("", "EditDescription", new { Id = Model.Id, Description = Model.Description }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h3>
+        @Html.DisplayFor(model => model.Description)
 
     </div>
 
     <hr />
-    <h3>Location</h3>
-    @Html.DisplayFor(model => model.Location)  @Html.ActionLink("", "EditLocation", new { Id = Model.Id, Location = Model.Location }, new { @class = "modal-link glyphicon glyphicon-edit" })
+    <h3>
+        Location @Html.ActionLink("", "EditLocation", new { Id = Model.Id, Location = Model.Location }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })
 
-    @{if (Model.Location != null)
-        { @Html.ActionLink("", "RemoveLocation", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-trash" }) } }
+        @{ if (Model.Location != null)
+        {
+           @Html.ActionLink("", "RemoveLocation", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-trash crud-icon" })
+    }
+        }
+    </h3>
+
+    <br />
+    @Html.DisplayFor(model => model.Location)
 
     @{if (Model.Location != null)
         { <div id="mapDisplay"></div>} }
+
+
     <hr />
 
 
@@ -30,10 +45,10 @@
     <div class="attachment-box">
         @Html.ActionLink("Add Attachment", "UploadAttachmentView", "Event", new { id = Model.Id }, new { @class = "modal-link btn btn-primary btn-large" })
         <br />
-
         @if (Model.Attachments.Any())
         {
             <hr />
+            <h4>Click on a file name to download the attachment</h4>
             foreach (var x in Model.Attachments)
             {
                 <div class="attachment-file">

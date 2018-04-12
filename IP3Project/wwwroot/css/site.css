@@ -2,11 +2,42 @@
 html, body {
     height: 100%;
     margin: 0px;
+    padding-bottom: 60px
 }
+
 
 body {
     padding-top: 50px;
-    padding-bottom: 20px
+    padding-bottom: 25px;
+}
+
+hr {
+    border-color:#000000;
+    opacity: 0.125;
+}
+
+footer {
+    margin-top: 100px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 50px; /* Height of the footer */
+    background: #ffffff;
+    font-size: 8pt;
+}
+
+.help-page-content{
+    font-size: 16pt;
+}
+
+.help-page-content section {
+    margin: 10px 0 10px;
+    padding: 10px 0 10px;
+}
+
+.help-page-content img {
+    max-width: 20vh;
+    height: auto;
 }
 
 /* Wrapping element */
@@ -23,6 +54,7 @@ body {
 
 .pageContent {
     text-align: center;
+    font-size: 16pt;
 }
 
 .popup-window {
@@ -92,17 +124,42 @@ body {
 /*======= End of Timeline Register ========*/
 
 
-/*Event View*/
+/*======= Event Viewer ========*/
+/*=============================*/
 .event-view-box {
     width: 100%;
     height: auto;
+    font-size: 1.2em;
     margin: 0;
     background-color: #f6f6f6;
-    box-shadow: #c6c6c6 0 0 10px;
+    box-shadow: #23aa94 0 0 10px;
     padding: 30px 75px 100px;
     text-align: left;
     border-radius: 15px;
 }
+
+
+.crud-icon{
+    color: #000000;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    padding: 5px;
+}
+
+.crud-icon:hover{
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+.loader-img {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    display: none;
+}
+
+/*======= End of Event Viewer ========*/
 
 /*======= Landing Page ========*/
 /*=============================*/
@@ -151,11 +208,6 @@ body {
     cursor: pointer;
 }
 
-footer {
-    text-align: center;
-
-}
-
 
 .modal-content {
     top: 10%;
@@ -195,6 +247,9 @@ footer {
 .dropdown-content {
     display: none;
     position: absolute;
+    text-align-last: left !important;
+    width: 150px;
+    height: auto;
     background-color: #f1f1f1;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -202,10 +257,13 @@ footer {
 
     /* Links inside the dropdown */
     .dropdown-content a {
+        width: 100%;
         color: black;
         padding: 15px 20px;
         text-decoration: none;
-        display: block;
+        display: inline-block;
+        text-align: left;
+        left: 0;
     }
 
         /* Change color of dropdown links on hover */
@@ -243,6 +301,8 @@ footer {
     margin: 10px 0 10px;
 }
 
+/*======= PAC ================*/
+/*============================*/
 
 .pac-container {
     z-index: 1051 !important;
@@ -293,53 +353,47 @@ footer {
 .pagination-container {
     text-align: center;
 }
+/*========== END OF PAC ============*/
 
 
 /*======= ATTACHMENTS ========*/
 /*============================*/
-.attachment-box{
+.attachment-box {
     max-width: 100%;
     height: auto;
-    padding: 10px;
+    padding: 20px;
     background-color: #e8e8e8;
-    border: 2px, solid, #009aff;
+    border: 1px solid #cacaca;
     display: block;
     border-radius: 15px;
 }
 
-.attachment-box hr {
-    background-color: #000;
-    color: #000;
-}
 
 .attachment-file {
     width: 100px;
     height: 100px;
-    background-color: #ffffff;
-    border: 1px, solid, #000;
-    border-radius: 5px;
-    box-shadow: #c6c6c6 0 0 10px;
     white-space: normal;
     overflow: hidden;
     text-align: center;
     padding: 5px;
-    margin: 5px;
+    margin: 5px 10px 0;
     display: inline-block;
     align-content: center;
 }
 
 .file-thumbnail {
-    width: 50px;
+    width: 75px;
     height: 50px;
-    border: 1px solid #a5a5a5;
+    display: inline-block;
     text-align: center;
-    box-shadow: 0px 2px 2px #a5a5a5;
-    margin-left: 20px;
-    margin-bottom: 5px;
+    font-size: 32pt;
 }
 
 /*============================*/
 
+
+/*======= EMPTY CASE BTN ========*/
+/*===============================*/
 .btn-empty-case-add {
     display: inline-block;
     width: 100px;
@@ -373,13 +427,10 @@ footer {
         text-decoration: none;
         box-shadow: #d4d4d4 0px 0px 20px;
     }
+/*============================*/
 
-
-.push-to-bottom{
-    bottom: 0;
-    left: 50%;
-    text-align: center;
-}
+/*======= DANGER ZONE ========*/
+/*============================*/
 
 .danger-zone {
     margin: 100px 0 0;
@@ -401,3 +452,4 @@ footer {
         font-weight: bold;
         font-size: 16px;
     }
+/*============================*/

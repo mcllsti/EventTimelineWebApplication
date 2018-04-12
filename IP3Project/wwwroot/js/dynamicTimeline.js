@@ -1,29 +1,53 @@
-﻿//// Write your JavaScript code.
+﻿//=====================
+// Dynamic Timeline 
+//=====================
 
-$(function () {
-    var inputs = $('.event');
+$(document).ready(function () {
+
     var paras = $('.description-flex-container').find('p');
 
-    $(inputs).click(function () {
+    $(".event").click(function () {
         var id = $(this).attr("id");
         var t = $(this),
             ind = t.index(),
             matchedPara = $(paras).eq(ind);
 
-       $(t).add(matchedPara).addClass('active');
-        $(inputs).not(t).add($(paras).not(matchedPara)).removeClass('active');
+        // CALCULATE OFFSET FROM WINDOW
+        var position = $(this).position();
+
+        console.log($(this).position().left);
+        console.log($(window).scrollLeft());
+
+        // CHANGE THE WIDTH OF THE LINE TO MATCH OFFSET
+        $("#line").css('width', position.left + 50);
+
+
+        // FIND ANY EXISTING ACTIVE AND REMOVE
+        $('.timeline-wrapper').find('.active-event').removeClass('active-event');
+
+        // ADD THE CLASS
+        $(this).addClass("active-event");
+
+
+        //---Ajax load event---
+        $('.loader-img').show();
+        $('.event-view-box').hide();
         $.ajax({
 
             url: '/Event/DisplayEvent',
             data: { Id: id },
             type: "GET",
             success: function (responce) {
+                $('.loader-img').hide();
                 $('.description-flex-container').html(responce);
             },
             error: function (xhr) {
+                $('.loader-img').hide();
                 alert('error');
             }
         });
+        //---end of ajax---
+
     });
 });
 

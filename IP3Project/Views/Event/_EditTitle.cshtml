@@ -2,22 +2,25 @@
 
 <h4>Edit Event Title</h4>
 <hr />
-<div class="row">
-    <div class="col-8">
-        <form asp-action="EditTitle" id="Form">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(m => m.TimelineEventId)
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+<div class="create-form">
+    <div class="row">
+        <div class="col-8">
+            <form asp-action="EditTitle" id="Form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.TimelineEventId)
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
 
 <script src="~/js/validationReset.js"></script>
 

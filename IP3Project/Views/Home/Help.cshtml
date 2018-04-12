@@ -1,13 +1,118 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Help";
 }
 
 <div class="pageContent">
-    <h2>Help</h2>
+    <h1>Help</h1>
 
-    <div>
-        <h3>Adding a Timeline</h3>
-        <p>Here we will put information on using the software</p>
+    <hr />
+    <div class="help-page-content">
+
+        <section>
+            <h2>Create a new timeline </h2>
+            <p>
+                If you have not yet create a timeline, you will see a large '+' button. Press this to create your first Timeline!
+                <br />
+                <img id="createFirstTimeline" src="~/images/createFirstTimeline.png" alt="Large Blue + Button"/>
+                <br />
+                To create a new timeline, click on the "Create Timeline" button.
+                <br />
+                <img id="createTimeline" src="~/images/createNewTimeline.png" alt="Create New Timeline Button" />
+                <br />
+                Type in your title and click "Save"
+                <br />
+                <img id="save" src="~/images/save.png" alt="Save" />
+            </p>
+        </section>
+        <hr />
+
+        <section>
+            <h2>Edit a timeline</h2>
+
+            <p>
+                To edit a timeline, click on <img id="editTimeline" src="~/images/editTimeline.png" alt="Edit Icon" />
+                and then choose “Edit” from the dropdown menu and enter in a new timeline title. 
+                <br />
+                Click <img id="save" src="~/images/save.png" alt="Save" /> to save the changes
+            </p>
+        </section>
+        <hr />
+
+        <section>
+            <p>
+                <h2>Delete a timeline</h2>
+                To delete a timeline, click on <img id="editTimeline" src="~/images/editTimeline.png" alt="Edit Icon" />
+                and then choose “Delete” from the dropdown menu. 
+                <br />
+                <b>
+                    WARNING: Timelines and any events within them are
+                    permanently deleted; you won’t be able to restore them!
+                </b>
+            </p>
+
+        </section>
+        <hr />
+        <section>       
+            <h2>Open and view a timeline</h2>
+            <p>To view a timeline, hover over a timeline title and click on it to open it.</p>
+            <br />
+            <img id="viewTimeline" src="~/images/viewTimeline.png" alt="View" />
+            
+        </section>
+        <hr />
+        <section>
+            <h2>Create a new event</h2>
+            <p>
+                To create a new event, click on <img id="createEvent" src="~/images/createEvent.png" alt="Create" /> and type in the title of the new event.
+                Optionally you and type in the description chose a date/time, and either type the name of a location
+                or select a location on the map, but it is not required to create event. Don’t worry, you can always
+                come back to edit them later on. 
+                <br />
+                Click on  <img id="save" src="~/images/save.png" alt="Save" />  to save the event.
+            </p>
+        </section>
+        <hr />
+        <section>
+            <h2>Edit an event</h2>
+            <p>
+                To edit any details of an event, click on <img id="editEvent" src="~/images/editEvent.png" alt="Edit" />
+                and then type or select the changes you wish to make. 
+                <br />
+                Click <img id="save" src="~/images/save.png" alt="Save" /> to save the changes
+            </p>
+        </section>
+        <hr />
+        <section>
+            <h2>Delete an event</h2>
+            <p>
+                To delete an event, scroll to the bottom on the page  and click on <img id="deleteEvent" src="~/images/deleteEvent.png" alt="Delete" />
+                <br />
+                <b>WARNING: Events and any attachments within them are permanently deleted; you wont be able to restore them!</b>
+            </p>
+        </section>
+        <hr />
+        <section>
+            <h2>Add attachment</h2>
+            <p>
+                To add an attachment to an event, click on  <img id="addAttachment" src="~/images/addAttachment.png" alt="Add" />
+                and then select a file to upload. 
+                <br />
+                Click  <img id="save" src="~/images/save.png" alt="Save" /> to save the attachment and upload.
+            </p>
+        </section>
+
+        <hr />
+        <section>
+            <h2>Problems Loading Timeline's or Events</h2>
+
+            <p>
+                If you experience any problems, this is most likely due to the IdeaGen API being down, or having problems. 
+                <br />
+                Please contact technical support, you can find all contact details in our <a asp-area="" asp-controller="Home" asp-action="About">About</a> page.
+            </p>
+        </section>
+
+
     </div>
 
 </div>

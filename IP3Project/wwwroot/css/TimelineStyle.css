@@ -1,8 +1,18 @@
 ﻿.timeline-wrapper {
     width: 100%;
-    height: 500px;
+    height: 400px;
     margin: 0 auto;
     position: relative;
+}
+
+#line {
+    width: 0px;
+    height: 5px;
+    background: #0073cc;
+    position: absolute;
+    z-index: 2;
+    top: 150px;
+    transition: 0.2s;
 }
 
 .timeline-area {
@@ -23,27 +33,12 @@
     position: relative;
     top: 150px;
     width: 100%;
-    height: 3px;
+    height: 5px;
     background-color: #000000;
     opacity: 0.5;
-    box-shadow: inset 40px 0px 20px -20px #eeeeee, inset -40px 0px 20px -20px #eeeeee;
     z-index: 1;
 }
 
-.ruler-active {
-    position: absolute;
-    right: 30px;
-    top: 33px;
-    width: 150px;
-    height: 3px;
-    opacity: 1;
-    z-index: 1;
-    display: none;
-}
-
-    .ruler-active:active {
-        background-color: #4d9ce6;
-    }
 
 .event {
     margin: 0px 20px 0px;
@@ -55,6 +50,22 @@
     text-align: center;
 }
 
+    .event:hover {
+        color: #0073cc;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+.active-event {
+    color: #23aa94 !important;
+    font-weight: bold;
+}
+
+    .active-event.event::after {
+        background: #23aa94;
+        transform: scale(1.2);
+    }
+
     .event::after {
         content: '';
         position: absolute;
@@ -64,7 +75,7 @@
         left: 33%;
         bottom: 0;
         background-color: white;
-        border: 2px solid #2e2e2e;
+        border: 3px solid rgba(0, 0, 0, 0.5);
         border-radius: 50%;
         z-index: 2;
         overflow: hidden;
@@ -73,7 +84,7 @@
 
     .event:hover::after {
         transform: scale(1.2);
-        background: #4d9ce6;
+        background: #0073cc;
         box-shadow: 0px 0px 10px #CCC;
         border: 2px solid #ffffff;
         cursor: pointer;
@@ -101,39 +112,4 @@
     word-wrap: break-word;
     text-align: center;
     max-width: 100px;
-}
-
-.pointer {
-    position: absolute;
-    display: inline-block;
-    top: 0px;
-    left: 50%;
-    width: 2px;
-    height: 20px;
-    text-align: center;
-    background-color: #000;
-}
-
-.first-event-btn {
-    width: 50px;
-    height: 100%;
-    background-color: #000000;
-    opacity: 0.5;
-    float: left;
-    position: fixed;
-    top: 0;
-    left: 1;
-    overflow: hidden;
-}
-
-.last-event-btn {
-    width: 50px;
-    height: 100%;
-    background-color: #000000;
-    opacity: 0.5;
-    float: right;
-    position: fixed;
-    top: 0;
-    right: 1;
-    overflow: hidden;
 }

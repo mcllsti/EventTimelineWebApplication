@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using IP3Project.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,18 +11,48 @@ using X.PagedList;
 
 namespace IP3Project.Controllers
 {
+    /// <summary>
+    ///Author: Team16
+    ///Date: Trimester 2, 2018 
+    ///Version: 1.0 
+    /// 
+    /// Controller that deals with the interaction,creation,update and deletion of Timelines
+    /// 
+    /// Extensions used:
+    /// Restsharp - API Interaction - https://www.restsharp.org - Apache License 2.0
+    /// X.PagedList - Paged Lists in register - https://github.com/dncuug/X.PagedList - MIT License
+    /// Newtonsoft.Json - serilization and deserilization of JSON - https://www.newtonsoft.com/json - MIT License
+    /// </summary>
     public class TimelineController : BaseController
     {
-
+        /// <summary>
+        /// Contains the logic for prosessing and returning the Timeline Register and its sorting.
+        /// </summary>
+        /// <param name="sortOrder">String of perticular order of sort</param>
+        /// <param name="searchString">String for perticular search from user</param>
+        /// <param name="page">Int containg the paged number</param>
+        /// <returns>View</returns>
         public IActionResult Timelines(string sortOrder, string searchString, int? page)
         {
+            //Setting Viewdata
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["CurrentFilter"] = searchString;
 
+            //Attempting to get the timelines to be displayed
             TimelineList model = new TimelineList();
-            model = GetAllTimelines(model);
+            try
+            {
+                model = GetAllTimelines(model);
+            }
+            catch
+            {
+                return RedirectToAction("APIError");
+            }
 
+
+            //Sets to var and determins if there is a search to take place
+            //If there is a search then limit the results to the searched paramiters
             var results = from s in model.Timelines
                           select s;
 
@@ -32,6 +61,8 @@ namespace IP3Project.Controllers
                 results = results.Where(s => s.Title.Contains(searchString)
                                        || s.CreationTimeStamp.ToString().Contains(searchString));
             }
+
+            //Switch for sorting the data in perticular order by user determined
             switch (sortOrder)
             {
                 case "name_desc":
@@ -49,14 +80,18 @@ namespace IP3Project.Controllers
             }
 
 
-
+            //Variable set up for return to view
             var pagenumber = page ?? 1;
             var onepage = results.ToPagedList(pagenumber, 5);
             ViewBag.OnePageOfProducts = onepage;
+
             return View();
         }
 
-
+        /// <summary>
+        /// Returns partial view for user to Create a Timeline
+        /// </summary>
+        /// <returns>Partial View</returns>
         [HttpGet]
         public IActionResult CreateTimeline()
         {
@@ -67,11 +102,16 @@ namespace IP3Project.Controllers
 
         }
 
+        /// <summary>
+        /// Recieves model from view and passes to be created through API
+        /// </summary>
+        /// <param name="model">CreateEditViewModel of Timeline to be created</param>
+        /// <returns>Redirect to Timelines view</returns>
         [HttpPost]
         public IActionResult CreateTimeline(CreateEditViewModel model)
         {
             string success = Create(model);
-            if(!success.Equals("OK"))
+            if(!success.Equals("OK")) //Error handling for robustness
             {
                 return RedirectToAction("APIError");
             }
@@ -79,31 +119,49 @@ namespace IP3Project.Controllers
 
         }
 
-
+        /// <summary>
+        /// Returns partial view for user to Edit a Timeline
+        /// </summary>
+        /// <param name="Id">String Id of Timeline to be edited</param>
+        /// <param name="Title">String Title of current Timeline Title</param>
+        /// <returns>Partial view</returns>
         [HttpGet]
         public PartialViewResult Edit(string Id, string Title)
         {
+            //Set Viewdata
             ViewData["Title"] = "Edit Timeline";
             ViewData["Action"] = "Edit";
-            CreateEditViewModel model = new CreateEditViewModel(Id,Title);
-            model = GetTimeline(model);
-            if(model == null)
+
+            CreateEditViewModel model = new CreateEditViewModel(Id,Title); //Create model from recieved variables
+
+            try //Try get specified timeline or return error
             {
+                model = GetTimeline(model);
+            }
+            catch{
                 ViewData["message"] = "This error was generated on communicating with the API. Please contact your system support.";
                 return PartialView("_Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
+
             return PartialView("_CreateEditTimeline", model);
 
         }
 
+        /// <summary>
+        /// Recieved model from view and passes to be edited through API
+        /// </summary>
+        /// <param name="model">CreateEditViewModel to be edited</param>
+        /// <returns>Redirect to Timelines</returns>
         [HttpPost]
         public IActionResult Edit(CreateEditViewModel model)
         {
-            string success = EditTimeline(model);
-            if (!success.Equals("OK"))
+            string success = EditTimeline(model); //Edit function to interact with API
+
+            if (!success.Equals("OK")) //Error handling
             {
                 return RedirectToAction("APIError");
             }
+
             return RedirectToAction("Timelines"); //returns to the Index!
 
         }
@@ -125,6 +183,8 @@ namespace IP3Project.Controllers
 
         }
 
+
+        
         #region Utility
 
         /// <summary>
@@ -138,30 +198,24 @@ namespace IP3Project.Controllers
             var request = new RestRequest("Timeline/GetTimelines"); //setting up the request params
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
 
-
-
-            try
-            {
                 var resultsDTO = JsonConvert.DeserializeObject<List<Timeline>>(response.Content); //Deserializes the results from the response
                 //Populates the viewmodel with relevent results
                 foreach (Timeline x in resultsDTO)
                 {
                     model.Timelines.Add(x);
                 }
-            }
-            catch
-            {
-                Response.Redirect("APIError");
-            }
-
-
+            
             return model;
         }
 
 
 
 
-
+        /// <summary>
+        /// Gets a Timeline from the API and populated view model with data
+        /// </summary>
+        /// <param name="model">CreateEditViewModel to be filled with API Data</param>
+        /// <returns>CreateEditViewModel with data of Timeline from API</returns>
         private CreateEditViewModel GetTimeline(CreateEditViewModel model)
         {
 
@@ -169,17 +223,10 @@ namespace IP3Project.Controllers
             request.AddHeader("TimelineId",model.TimelineId);
 
             IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
-
-            try
-            {
                 var resultsDTO = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
                 model.TimelineId = resultsDTO.Id;
                 model.Title = resultsDTO.Title;
-            }
-            catch
-            {
-                model = null;
-            }
+
 
             return model;
         }
