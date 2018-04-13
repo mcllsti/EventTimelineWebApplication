@@ -7,20 +7,25 @@ using System.Threading.Tasks;
 
 namespace IP3Project.Models
 
-
+    //View Models that concern the interactions and displaying of Events
 {
-
-    public class EventList
+    /// <summary>
+    /// A viewmodel containing a list of Events to be displayed
+    /// </summary>
+    public class EventListViewModel
     {
         public List<Event> Events { get; set; }
 
-        public EventList()
+        public EventListViewModel()
         {
             Events = new List<Event>();
         }
 
     }
 
+    /// <summary>
+    /// View model for deleteing an Event from a Timeline
+    /// </summary>
     public class DeleteEventViewModel : PutViewModel
     {
 
@@ -33,34 +38,15 @@ namespace IP3Project.Models
 
     }
 
-
-    public class TimelineEventLink : PutViewModel
-    {
-        public string TimelineId { get; set; }
-        public string EventId { get; set; }
-
-        public TimelineEventLink()
-        {
-
-        }
-
-        public TimelineEventLink(string timelineEventId,string eventId)
-        {
-            TimelineId = timelineEventId;
-            EventId = eventId;
-        }
-
-
-
-
-    }
-
-
-    public class CreateEventView : PutViewModel
+    /// <summary>
+    /// View model that has the main purpose of creating an event. Validation is included
+    /// </summary>
+    public class CreateEventViewModel : PutViewModel
     {
         public string TimelineEventId { get; set; }
         [Required]
-        [StringLength(30, ErrorMessage = "Title too long. Must be under 30 characters")]
+        [StringLength(25, ErrorMessage = "Title too long. Must be under 30 characters")]
+        [RegularExpression(@"^\S.+\S$", ErrorMessage = "Title not valid!")]
         public string Title { get; set; }
         public string Description { get; set; }
         [Required]
@@ -69,111 +55,32 @@ namespace IP3Project.Models
         public string Location { get; set; }
         public string TimelineId { get; set; }
 
-        public CreateEventView(String Id)
+        public CreateEventViewModel(String Id)
         {
             TimelineId = Id;
         }
 
-        public CreateEventView()
+        public CreateEventViewModel()
         {
         }
     }
 
-    public class Event
-    {
-
-        public string Id { get; set; }
-        [Required]
-        public string Title { get; set; }
-        public string Description { get; set; }
-        [Required]
-        [Display(Name = "Date/Time")]
-        public string EventDateTime { get; set; }
-        public string Location { get; set; }
-        public List<Attachment> Attachments { get; set; }
-
-        public Event()
-        {
-            Attachments = new List<Attachment>();
-        }
-
-        public DateTime GetDateTime(string dateTimeString)
-        {
-            DateTime dateTime = new DateTime((long.Parse(dateTimeString)));
-
-            return dateTime;
-        }
-
-
-    }
-
-    public class Attachment : PutViewModel
-    {
-
-        public string AttachmentId { get; set; }
-        public string Title { get; set; }
-        public string TimelineEventId { get; set; }
-
-        public Attachment()
-        {
-
-        }
-
-        public Attachment(string tempId, string title, string EventId)
-        {
-            AttachmentId = tempId;
-            Title = title;
-            TimelineEventId = EventId;
-        }
-        
-    }
-
-    public class CreateAttachment
-    {
-        public IFormFile File { get; set; }
-        public string TimelineEventId { get; set; }
-
-        public CreateAttachment(IFormFile file, string timelineEventId)
-        {
-            File = file;
-            timelineEventId = TimelineEventId;
-        }
-
-        public CreateAttachment()
-        {
-
-        }
-
-        public CreateAttachment(string timelineEventId)
-        {
-            timelineEventId = TimelineEventId;
-        }
-
-    }
-
-    public class AttachmentList
-    {
-        public List<Attachment> Attachments { get; set; }
-
-        public AttachmentList()
-        {
-            Attachments = new List<Attachment>();
-        }
-    }
-
-    public class EditDescription : PutViewModel
+    /// <summary>
+    /// View model that deals with the editing of descriptions and its form
+    /// </summary>
+    public class EditDescriptionViewModel : PutViewModel
     {
         public string TimelineEventId { get; set; }
         [Required]
         public string Description { get; set; }
 
-        public EditDescription(string Id, string description)
+        public EditDescriptionViewModel(string Id, string description)
         {
             TimelineEventId = Id;
             Description = description;
         }
 
-        public EditDescription()
+        public EditDescriptionViewModel()
         {
 
         }
@@ -181,25 +88,32 @@ namespace IP3Project.Models
 
     }
 
-    public class EditDate : PutViewModel
+    /// <summary>
+    /// Edit Date viewmodel deals with the editing of the dates as well as parseing functions
+    /// </summary>
+    public class EditDateViewModel : PutViewModel
     {
         public string TimelineEventId { get; set; }
         [Required]
         [Display(Name = "Date/Time")]
         public string EventDateTime { get; set; }
 
-        public EditDate(string Id, string Date)
+        public EditDateViewModel(string Id, string Date)
         {
             TimelineEventId = Id;
             EventDateTime = Date;
         }
 
-        public EditDate()
+        public EditDateViewModel()
         {
 
         }
 
-        public DateTime GetDateTime()
+        /// <summary>
+        /// Used to get a DateTime from the EventDateTime string
+        /// </summary>
+        /// <returns>DateTime version of date time string</returns>
+        public DateTime GetDateTime() 
         {
             DateTime dateTime = new DateTime((long.Parse(EventDateTime)));
             return dateTime;
@@ -208,19 +122,22 @@ namespace IP3Project.Models
 
     }
 
-    public class EditLocation : PutViewModel
+    /// <summary>
+    /// View model that deals with the editing and form handling of Locations
+    /// </summary>
+    public class EditLocationViewModel : PutViewModel
     {
         public string TimelineEventId { get; set; }
         [Required]
         public string Location { get; set; }
 
-        public EditLocation(string Id, string location)
+        public EditLocationViewModel(string Id, string location)
         {
             TimelineEventId = Id;
             Location = location;
         }
 
-        public EditLocation()
+        public EditLocationViewModel()
         {
 
         }
@@ -229,20 +146,24 @@ namespace IP3Project.Models
 
     }
 
-    public class EditTitle : PutViewModel
+    /// <summary>
+    /// Edit Title is a view model that concersn the editing and validation of a Event Title
+    /// </summary>
+    public class EditTitleViewModel : PutViewModel
     {
         public string TimelineEventId { get; set; }
         [Required]
-        [StringLength(30, ErrorMessage = "Title too long. Must be under 30 characters")]
+        [RegularExpression(@"^\S.+\S$", ErrorMessage = "Title not valid!")]
+        [StringLength(25, ErrorMessage = "Title too long. Must be under 30 characters")]
         public string Title { get; set; }
 
-        public EditTitle(string Id, string title)
+        public EditTitleViewModel(string Id, string title)
         {
             TimelineEventId = Id;
             Title = title;
         }
 
-        public EditTitle()
+        public EditTitleViewModel()
         {
 
         }

@@ -6,46 +6,17 @@ using System.Threading.Tasks;
 
 namespace IP3Project.Models
 {
-
-    public class Timeline 
-    {
-        public string Id { get; set; }
-        public string Title { get; set; }
-        [Display(Name = "Date/Time")]
-        public string CreationTimeStamp { get; set; }
-
-        public List<Event> TimelineEvents { get; set; }
-
-        public Timeline()
-        {
-            TimelineEvents = new List<Event>();
-        }
-
-        public Timeline(string id)
-        {
-            Id = id;
-            TimelineEvents = new List<Event>();
-        }
-
-
-        public DateTime GetDateTime()
-        {
-            DateTime dateTime = new DateTime((long.Parse(CreationTimeStamp)));
-            return dateTime;
-        }
-
-
-    }
+    //View Models that concern the interaction and displaying of Timelines
 
 
     /// <summary>
     /// A Viewmodel that will contain a List of TimelineViewModels for output
     /// </summary>
-    public class TimelineList
+    public class TimelineListViewModel
     {
         public List<Timeline> Timelines { get; set; }
 
-        public TimelineList()
+        public TimelineListViewModel()
         {
             Timelines = new List<Timeline>();
         }
@@ -64,7 +35,7 @@ namespace IP3Project.Models
 
 
     /// <summary>
-    /// CreateEditViewModel will add Timelines 
+    /// CreateEditViewModel will be used to add Timelines and edit them
     /// </summary>
     public class CreateEditViewModel : PutViewModel
     {
@@ -86,6 +57,7 @@ namespace IP3Project.Models
 
         [Required]
         [StringLength(50, ErrorMessage = "Title too long. Must be under 50 characters")]
+        [RegularExpression(@"^\S.+\S$", ErrorMessage = "Title not valid!")]
         [Display(Name = "Timeline Title")]
         public string Title { get; set; }
 
@@ -93,19 +65,5 @@ namespace IP3Project.Models
 
     }
 
-    public class SystemViewModel
-    {
-        public string Title { get; set; }
-        [Display(Name = "Date/Time")]
-        public DateTime CreationTimeStamp { get; set; }
-        public string Id { get; set; }
 
-        public SystemViewModel(string title, string date, string id)
-        {
-            Title = title;
-            CreationTimeStamp = new DateTime(long.Parse(date));
-            Id = id;
-        }
-
-    }
 }

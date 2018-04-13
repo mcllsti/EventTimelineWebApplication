@@ -1,10 +1,11 @@
 ﻿@model ErrorViewModel
+
 @{
     ViewData["Title"] = "Error";
 }
 
 <h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h4 class="text-danger">An error occurred while processing your request.</h4>
 
 @if (Model.ShowRequestId)
 {
@@ -13,5 +14,8 @@
     </p>
 }
 
-    <h1>@ViewData["Message"]</h1>
+<h1>@ViewData["Message"]</h1>
+
+@Html.ActionLink("Forward to the help page", "Help", "Home", null, new { @class = "btn btn-primary btn-lg" })
+@Html.ActionLink("Back to the Timeline registier", "Timelines", "Timeline", null, new { @class = "btn btn-primary btn-lg" })
 

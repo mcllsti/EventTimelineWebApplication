@@ -13,15 +13,25 @@
             <p>
                 If you have not yet create a timeline, you will see a large '+' button. Press this to create your first Timeline!
                 <br />
-                <img id="createFirstTimeline" src="~/images/createFirstTimeline.png" alt="Large Blue + Button"/>
+                <div class="timeline-register-emptycase btn-empty-case-add">
+                    +
+                </div>
                 <br />
+                <br />
+
                 To create a new timeline, click on the "Create Timeline" button.
                 <br />
-                <img id="createTimeline" src="~/images/createNewTimeline.png" alt="Create New Timeline Button" />
+                <div class="btn btn-primary btn-lg">
+                    Create Timeline
+                </div>
                 <br />
-                Type in your title and click "Save"
                 <br />
-                <img id="save" src="~/images/save.png" alt="Save" />
+
+                Type in your title and click "Save"          
+                <br />
+                <div class="btn btn-primary btn-lg">
+                    Save
+                </div>
             </p>
         </section>
         <hr />
@@ -30,10 +40,10 @@
             <h2>Edit a timeline</h2>
 
             <p>
-                To edit a timeline, click on <img id="editTimeline" src="~/images/editTimeline.png" alt="Edit Icon" />
-                and then choose “Edit” from the dropdown menu and enter in a new timeline title. 
+                To edit a timeline, click on the cog button; <span class="glyphicon glyphicon-cog"></span> and then choose “Edit” from the dropdown menu and enter in a new timeline title.
                 <br />
-                Click <img id="save" src="~/images/save.png" alt="Save" /> to save the changes
+                <br />
+                Click <div class="btn btn-primary btn-lg">Save</div> to save the changes
             </p>
         </section>
         <hr />
@@ -41,7 +51,7 @@
         <section>
             <p>
                 <h2>Delete a timeline</h2>
-                To delete a timeline, click on <img id="editTimeline" src="~/images/editTimeline.png" alt="Edit Icon" />
+                To delete a timeline, click on <span class="glyphicon glyphicon-cog"></span>
                 and then choose “Delete” from the dropdown menu. 
                 <br />
                 <b>
@@ -52,40 +62,57 @@
 
         </section>
         <hr />
-        <section>       
+        <section>
             <h2>Open and view a timeline</h2>
             <p>To view a timeline, hover over a timeline title and click on it to open it.</p>
             <br />
-            <img id="viewTimeline" src="~/images/viewTimeline.png" alt="View" />
-            
+
+                <div style="margin-left: 25%; width:50%; background-color: #f6f6f6; padding: 10px; overflow: scroll">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Date/Time</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Timeline Name</td>
+                                <td>01/02/03</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
         </section>
         <hr />
         <section>
             <h2>Create a new event</h2>
             <p>
-                To create a new event, click on <img id="createEvent" src="~/images/createEvent.png" alt="Create" /> and type in the title of the new event.
+                To create a new event, click on <span class="btn btn-primary btn-lg">Create New Event</span> and type in the title of the new event.
                 Optionally you and type in the description chose a date/time, and either type the name of a location
                 or select a location on the map, but it is not required to create event. Don’t worry, you can always
-                come back to edit them later on. 
+                come back to edit them later on.
                 <br />
-                Click on  <img id="save" src="~/images/save.png" alt="Save" />  to save the event.
+                Click on <span class="btn btn-primary btn-lg">Save</span> to save the event.
             </p>
         </section>
         <hr />
         <section>
             <h2>Edit an event</h2>
             <p>
-                To edit any details of an event, click on <img id="editEvent" src="~/images/editEvent.png" alt="Edit" />
+                To edit any details of an event, click on <span class="glyphicon glyphicon-edit"></span>
                 and then type or select the changes you wish to make. 
                 <br />
-                Click <img id="save" src="~/images/save.png" alt="Save" /> to save the changes
+                Click <span class="btn btn-primary btn-lg">Save</span> to save the changes
             </p>
         </section>
         <hr />
         <section>
             <h2>Delete an event</h2>
             <p>
-                To delete an event, scroll to the bottom on the page  and click on <img id="deleteEvent" src="~/images/deleteEvent.png" alt="Delete" />
+                To delete an event, scroll to the bottom on the page  and click on <span class="btn btn-danger btn-lg">Delete Event</span>
                 <br />
                 <b>WARNING: Events and any attachments within them are permanently deleted; you wont be able to restore them!</b>
             </p>
@@ -94,10 +121,10 @@
         <section>
             <h2>Add attachment</h2>
             <p>
-                To add an attachment to an event, click on  <img id="addAttachment" src="~/images/addAttachment.png" alt="Add" />
+                To add an attachment to an event, click on  <span class="btn btn-primary btn-lg">Add Attachment</span>
                 and then select a file to upload. 
                 <br />
-                Click  <img id="save" src="~/images/save.png" alt="Save" /> to save the attachment and upload.
+                Click <span class="btn btn-primary btn-lg">Save</span> to save the attachment and upload.
             </p>
         </section>
 

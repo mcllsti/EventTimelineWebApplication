@@ -12,7 +12,7 @@
 
     <div>
         <h3>Date/Time: @Html.ActionLink("", "EditDate", new { Id = Model.Id, Date = Model.EventDateTime }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h3>
-        @Model.GetDateTime(Model.EventDateTime)
+        @Model.GetDateTime(Model.EventDateTime).ToString("g")
 
         <h3>Description: @Html.ActionLink("", "EditDescription", new { Id = Model.Id, Description = Model.Description }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h3>
         @Html.DisplayFor(model => model.Description)
@@ -51,13 +51,13 @@
             <h4>Click on a file name to download the attachment</h4>
             foreach (var x in Model.Attachments)
             {
-                <div class="attachment-file">
-                    <div class="file-thumbnail">
-                        <!--If we can figure out thumbnails for files, we would put it here-->
-                        <div class="glyphicon glyphicon-file"></div>
-                    </div>
-                    @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title })
+            <div class="attachment-file">
+                <div class="file-thumbnail">
+                    <!--If we can figure out thumbnails for files, we would put it here-->
+                    <div class="glyphicon glyphicon-file"></div>
                 </div>
+                @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title }) @Html.ActionLink("", "DeleteAttachment", "Attachment", new { Id = x.AttachmentId, EventId = Model.Id }, new { @class = "glyphicon glyphicon-trash" })
+            </div>
             }
             <hr />
         }
@@ -71,7 +71,7 @@
 
     <div class="danger-zone">
         <h3>WARNING - Danger Zone</h3>
-        @Html.ActionLink("Delete Event", "DeleteEvent", "Event", new { Id = Model.Id }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Delete Event", "DeleteEvent", "Event", new { Id = Model.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you wish to delete this Event?');" })
     </div>
 
 </div>

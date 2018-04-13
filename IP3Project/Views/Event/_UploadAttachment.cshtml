@@ -1,4 +1,4 @@
-﻿@model IP3Project.Models.CreateAttachment
+﻿@model IP3Project.Models.CreateAttachmentViewModel
 
 <h4>Attachment</h4>
 <hr />
@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <input type="submit" value="Upload" class="btn btn-primary" />
-                    <span><a asp-action="Index" class="btn btn-default">Back to List</a></span>
+                    <button type="button" class="btn btn-default modal-close-btn" data-dismiss="modal">Close</button>
                 </div>
 
             </form>

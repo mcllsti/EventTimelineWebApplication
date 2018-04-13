@@ -13,7 +13,7 @@ namespace IP3Project.Controllers
     /// Auto-Generated controller by Microsoft MVC that returns Index, About, Help and Error pages.
     /// This code has remained unedited. 
     /// </summary>
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {
@@ -34,6 +34,12 @@ namespace IP3Project.Controllers
             ViewData["Message"] = "Help Page";
 
             return View();
+        }
+
+        public IActionResult PageNotFound()
+        {
+            ViewData["Message"] = "Page not found!";
+            return View("Error", (new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier }));
         }
 
         public IActionResult Error()

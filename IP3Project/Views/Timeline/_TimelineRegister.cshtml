@@ -1,70 +1,70 @@
-﻿@using X.PagedList.Mvc; 
+﻿@using X.PagedList.Mvc;
 @using X.PagedList;
 
-<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<div class="container">
-    <div class="row h-100 justify-content-center align-items-center">
-        <br />
+<div class="timelineRegister">
+    <!--<div class="row h-100 justify-content-center align-items-center">-->
+    <br />
 
-        <form asp-action="Timelines" method="get">
-            <div class="form-actions no-color">
-                <p>
-                    Search by Title: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-                    <input type="submit" value="Search" class="btn btn-default" /> |
-                    <a asp-action="Timelines">Display All</a>
-                </p>
-            </div>
-        </form>
+    <form asp-action="Timelines" method="get">
+        <div class="form-actions">
+            <p>
+                Search by Title: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" />
+                <a asp-action="Timelines" class="btn btn-default">Display All</a>
+            </p>
+        </div>
+    </form>
 
+    <div class="timeline-register-box">
+        <div style="text-align: center;">
+            @Html.ActionLink("Create New Timeline", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn btn-primary btn-large" })
+        </div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th style="width: 50%; font-size:16pt" scope="col"><a asp-action="Timelines" asp-route-sortOrder="@ViewData["NameSortParm"]">Title</a></th>
-                    <th style="font-size:16pt" class="text-center" scope="col"><a asp-action="Timelines" asp-route-sortOrder="@ViewData["DateSortParm"]">Date/Time</a></th>
-
-                    <th class="text-right" scope="col">@Html.ActionLink("Create New Timeline", "CreateTimeline", "Timeline", null, new { @class = "modal-link btn btn-primary btn-large" })</th>
+                    <th><a asp-action="Timelines" asp-route-sortOrder="@ViewData["NameSortParm"]">Title</a></th>
+                    <th><a asp-action="Timelines" asp-route-sortOrder="@ViewData["DateSortParm"]">Date/Time</a></th>
+                    <th> </th>
                 </tr>
             </thead>
 
-
             <tbody>
-
-
                 @foreach (var x in ViewBag.OnePageOfProducts)
             {
 
                 <tr class="clickable-tr">
                     <!--The entire <tr> needs to be made clickable so we can go to the timeline, can do this with jQuery/JS.-->
-                    <td scope="row">@Html.ActionLink((string)x.Title, "TimelineView", "Event", new { Id = x.Id }, null)</td>
-                    <td class="text-center"> @x.GetDateTime()</td>
+                    <td>@Html.ActionLink((string)x.Title, "TimelineView", "Event", new { Id = x.Id }, null)</td>
+                    <td> @x.GetDateTime().ToString("g")</td>
                     <td class="text-right">
-
                         <div class="dropdown">
                             <div class="dropbtn glyphicon glyphicon-cog"></div>
                             <div class="dropdown-content">
                                 @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id, Title = x.Title }, new { @class = "modal-link" })
-                                <b>@Html.ActionLink("Delete", "Delete", new { Id = x.Id })</b>
+                                <b> @Html.ActionLink("Delete", "Delete", new { Id = x.Id }, new { onclick = "return confirm('Are you sure you wish to delete this Event?');" })</b>
                             </div>
                         </div>
                     </td>
                 </tr>
-
-
         }
 
 
 
             </tbody>
         </table>
-        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Timelines", "Timeline", new { page = page }))
-        <div id="modal-container" class="modal fade">
-            <div class="modal-content">
-            </div>
-        </div>
+
+
 
 
     </div>
+
+    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Timelines", "Timeline", new { page = page }))
+    <div id="modal-container" class="modal fade">
+        <div class="modal-content">
+        </div>
+    </div>
+
 </div>
 
 

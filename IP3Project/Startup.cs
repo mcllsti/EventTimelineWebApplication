@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IP3Project.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using NToastNotify;
 
 namespace IP3Project
 {
@@ -22,7 +23,22 @@ namespace IP3Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             services.AddMvc();
+
+            services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+            {
+                ProgressBar = false,
+                PositionClass = ToastPositions.TopRight,
+                CloseButton = true,
+                PreventDuplicates = false,
+                TapToDismiss = true
+               
+            });
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
 
         }
 
@@ -37,7 +53,7 @@ namespace IP3Project
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseNToastNotify();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -45,6 +61,12 @@ namespace IP3Project
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                "PageNotFound",
+                "{*catchall}",
+                new { controller = "Home", action = "PageNotFound" }
+                );
             });
         }
     }

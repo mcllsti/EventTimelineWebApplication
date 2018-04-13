@@ -26,6 +26,8 @@ footer {
     font-size: 8pt;
 }
 
+/*======= Help Page ========*/
+/*==========================*/
 .help-page-content{
     font-size: 16pt;
 }
@@ -39,6 +41,18 @@ footer {
     max-width: 20vh;
     height: auto;
 }
+/*====== End of Help Page ======*/
+
+/*======= About Page ========*/
+/*===========================*/
+
+.about-page-img{
+    max-width: 50%;
+    height: auto;
+}
+
+/*====== End of About Page ======*/
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -52,9 +66,11 @@ footer {
     margin: 15px
 }
 
+/*Page Content*/
 .pageContent {
     text-align: center;
     font-size: 16pt;
+    padding: 10px;
 }
 
 .popup-window {
@@ -110,16 +126,94 @@ footer {
 /*======= Timeline Register ========*/
 /*==================================*/
 
+.timeline-register-box {
+    width: 100%;
+    height: auto;
+    font-size: 1.2em;
+    margin: 0;
+    background-color: #f6f6f6;
+    box-shadow: #c6c6c6 0 0 10px;
+    padding: 30px 75px 100px;
+    border-radius: 15px;
+    overflow: scroll;
+}
+
 .timelineRegister {
-    text-align: center;
     margin: auto;
     width: 100%;
+    height: auto;
     padding: 10px;
 }
 
+
 .timeline-register-emptycase {
     padding: 25px;
+    cursor: pointer;
 }
+
+.text-right {
+    text-align-last: right;
+}
+
+
+.table-hover {
+    border-collapse: separate;
+    border-spacing: 0px 20px;
+}
+
+    .table-hover th {
+        border-top: none;
+        font-size: 20pt;
+        color: #000000;
+    }
+
+    .table-hover tr {
+        transition: 0.5s;
+    }
+
+    .table-hover tbody tr {
+        padding: 10px 5px 10px;
+    }
+
+    .table-hover tbody td:first-child {
+        border-left-style: none;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding-left: 20px;
+    }
+
+    .table-hover tbody td:last-child {
+        border-left-style: none;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .table-hover td {
+        padding: 5px;
+    }
+
+        .table-hover td a {
+            color: #000000;
+        }
+
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 115, 204, 0.9);
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.table-hover tbody tr:hover a{
+    color: #ffffff;
+    transition: 0.5s;
+}
+
+    .table-hover th:hover a {
+        color: #23aa94;
+        transition: 0.5s;
+    }
+
+
 
 /*======= End of Timeline Register ========*/
 
@@ -195,18 +289,7 @@ footer {
 /*======= End of Landing Page ========*/
 
 
-.text-right {
-    text-align-last: right;
-}
 
-.table th {
-    border-top: none;
-}
-
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #CAE3FE;
-    cursor: pointer;
-}
 
 
 .modal-content {
@@ -241,24 +324,27 @@ footer {
 .dropdown {
     position: relative;
     display: inline-block;
+    
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
     position: absolute;
+    left: -100px;
     text-align-last: left !important;
     width: 150px;
     height: auto;
     background-color: #f1f1f1;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
     /* Links inside the dropdown */
     .dropdown-content a {
         width: 100%;
-        color: black;
+        color: #000000 !important;
         padding: 15px 20px;
         text-decoration: none;
         display: inline-block;
@@ -352,6 +438,8 @@ footer {
 
 .pagination-container {
     text-align: center;
+    bottom: 0;
+    margin-bottom: 0;
 }
 /*========== END OF PAC ============*/
 

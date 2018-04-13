@@ -4,7 +4,9 @@ using System.Globalization;
 using System.Linq;
 using IP3Project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using NToastNotify;
 using RestSharp;
 
 namespace IP3Project.Controllers
@@ -22,6 +24,13 @@ namespace IP3Project.Controllers
     public class EventController : BaseController
     {
 
+        private IToastNotification _toastNotification;
+        //Dependency  injection and Consructor
+        public EventController(IOptions<AppSettings> appSettings, IToastNotification toastNotification) : base(appSettings)
+        {
+            _toastNotification = toastNotification;
+        }
+
         #region Update
 
         #region Description
@@ -35,7 +44,7 @@ namespace IP3Project.Controllers
         [HttpGet]
         public PartialViewResult EditDescription(string Id, string Description)
         {
-            EditDescription model = new EditDescription(Id, Description);
+            EditDescriptionViewModel model = new EditDescriptionViewModel(Id, Description);
             return PartialView("_EditDescription", model);
 
         }
@@ -46,7 +55,7 @@ namespace IP3Project.Controllers
         /// <param name="model">New details to be updated</param>
         /// <returns>Redirect to TimelineView</returns>
         [HttpPost]
-        public IActionResult EditDescription(EditDescription model)
+        public IActionResult EditDescription(EditDescriptionViewModel model)
         {
             
             try //ErrorHandling
@@ -57,7 +66,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
-
+            _toastNotification.AddInfoToastMessage("The event description has been edited!");
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
@@ -66,11 +75,11 @@ namespace IP3Project.Controllers
         /// Calls to API to Edit Desciription
         /// </summary>
         /// <param name="model"></param>
-        private void EditDescriptionCall(EditDescription model)
+        private void EditDescriptionCall(EditDescriptionViewModel model)
         {
             var request = new RestRequest("TimelineEvent/EditDescription");
 
-            if(!API.PutRequest(request, model).Equals("OK")) //Error Handling
+            if(!PutRequest(request, model).Equals("OK")) //Error Handling
             {
                 throw new System.ArgumentException("Parameter cannot be null", "original");
             }
@@ -88,7 +97,7 @@ namespace IP3Project.Controllers
         [HttpGet]
         public PartialViewResult EditDate(string Id, string Date)
         {
-            EditDate model = new EditDate(Id,Date);
+            EditDateViewModel model = new EditDateViewModel(Id,Date);
             return PartialView("_EditDate", model);
 
         }
@@ -96,10 +105,10 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Handles the editing of an event date
         /// </summary>
-        /// <param name="model">EditDate with editing details for event</param>
+        /// <param name="model">EditDateViewModel with editing details for event</param>
         /// <returns>Redirect to TimelineView</returns>
         [HttpPost]
-        public IActionResult EditDate(EditDate model)
+        public IActionResult EditDate(EditDateViewModel model)
         {
             try //Error handling
             {
@@ -109,7 +118,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
-
+            _toastNotification.AddInfoToastMessage("The event date has been edited!");
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
@@ -117,8 +126,8 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Calls API to edit date
         /// </summary>
-        /// <param name="model">EditDate model containing the data to update</param>
-        private void EditDateCall(EditDate model)
+        /// <param name="model">EditDateViewModel model containing the data to update</param>
+        private void EditDateCall(EditDateViewModel model)
         {
             model.EventDateTime.ToString();
             CultureInfo ukCulture = new CultureInfo("en-GB"); //Handles international dates
@@ -134,7 +143,7 @@ namespace IP3Project.Controllers
 
             var request = new RestRequest("TimelineEvent/EditEventDateTime");
 
-            if(!API.PutRequest(request, model).Equals("OK")) //Error Handling
+            if(!PutRequest(request, model).Equals("OK")) //Error Handling
             {
                 throw new System.ArgumentException("Parameter cannot be null", "original");
             }
@@ -153,7 +162,7 @@ namespace IP3Project.Controllers
         [HttpGet]
         public PartialViewResult EditLocation(string Id, string Location)
         {
-            EditLocation model = new EditLocation(Id, Location);
+            EditLocationViewModel model = new EditLocationViewModel(Id, Location);
             return PartialView("_EditLocation", model);
 
         }
@@ -161,10 +170,10 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Calls edit location of the API
         /// </summary>
-        /// <param name="model">EditLocation model for data from form</param>
+        /// <param name="model">EditLocationViewModel model for data from form</param>
         /// <returns>Redirect to TimelineView</returns>
         [HttpPost]
-        public IActionResult EditLocation(EditLocation model)
+        public IActionResult EditLocation(EditLocationViewModel model)
         {
             try //Error handling
             {
@@ -174,7 +183,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
-
+            _toastNotification.AddInfoToastMessage("The event location has been edited!");
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
@@ -182,12 +191,12 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Calls API to edit location
         /// </summary>
-        /// <param name="model">EditLocation model containing data to be updated</param>
-        private void EditLocationCall(EditLocation model)
+        /// <param name="model">EditLocationViewModel model containing data to be updated</param>
+        private void EditLocationCall(EditLocationViewModel model)
         {
             var request = new RestRequest("TimelineEvent/EditLocation");
 
-            if(!API.PutRequest(request, model).Equals("OK")) //Error handling
+            if(!PutRequest(request, model).Equals("OK")) //Error handling
             {
                 throw new System.ArgumentException("Parameter cannot be null", "original");
             }
@@ -200,15 +209,15 @@ namespace IP3Project.Controllers
         /// <returns>Redirect to TimelineView</returns>
         public IActionResult RemoveLocation(string Id)
         {
-            EditLocation model = new EditLocation(Id, null); //creates model with null to have location removed
+            EditLocationViewModel model = new EditLocationViewModel(Id, null); //creates model with null to have location removed
 
             var request = new RestRequest("TimelineEvent/EditLocation");
 
-            if(!(API.PutRequest(request, model)).Equals("OK")) //error handling
+            if(!(PutRequest(request, model)).Equals("OK")) //error handling
             {
                 return RedirectToAction("APIError");
             }
-
+            _toastNotification.AddWarningToastMessage("The event location has been removed!");
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
         }
 
@@ -227,7 +236,7 @@ namespace IP3Project.Controllers
         [HttpGet]
         public PartialViewResult EditTitle(string Id, string Title)
         {
-            EditTitle model = new EditTitle(Id, Title);
+            EditTitleViewModel model = new EditTitleViewModel(Id, Title);
             return PartialView("_EditTitle", model);
 
         }
@@ -235,10 +244,10 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Recieves form data and calls to Edit Title
         /// </summary>
-        /// <param name="model">EditTitle model with data to update</param>
+        /// <param name="model">EditTitleViewModel model with data to update</param>
         /// <returns>Redirect to TimelineView</returns>
         [HttpPost]
-        public IActionResult EditTitle(EditTitle model)
+        public IActionResult EditTitle(EditTitleViewModel model)
         {
             try //Error handling
             {
@@ -248,7 +257,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
-            
+            _toastNotification.AddInfoToastMessage("The event title has been edited!");
             return RedirectToAction("TimelineView", new { id = GetTimelineID(model.TimelineEventId) }); //returns to the Index!
 
         }
@@ -256,12 +265,12 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Calls to API to edit Title
         /// </summary>
-        /// <param name="model">EditTitle model to be serilized</param>
-        private void EditTitleCall(EditTitle model)
+        /// <param name="model">EditTitleViewModel model to be serilized</param>
+        private void EditTitleCall(EditTitleViewModel model)
         {
             var request = new RestRequest("TimelineEvent/EditTitle");
 
-            if(!API.PutRequest(request, model).Equals("OK")) //Error Handling
+            if(!PutRequest(request, model).Equals("OK")) //Error Handling
             {
                 throw new System.ArgumentException("Parameter cannot be null", "original");
             }
@@ -284,7 +293,7 @@ namespace IP3Project.Controllers
             ViewData["Title"] = "Create a Event"; //Sets View data
             ViewData["Action"] = "CreateEvent";
 
-            CreateEventView model = new CreateEventView(Id);
+            CreateEventViewModel model = new CreateEventViewModel(Id);
 
             return PartialView("_CreateEvent", model);
 
@@ -296,7 +305,7 @@ namespace IP3Project.Controllers
         /// <param name="model">CreateEventview with data containg event to be Created</param>
         /// <returns>Redirect to TimelineView</returns>
         [HttpPost]
-        public IActionResult CreateEvent(CreateEventView model)
+        public IActionResult CreateEvent(CreateEventViewModel model)
         {
             
             try //Error handling
@@ -309,7 +318,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
-
+            _toastNotification.AddSuccessToastMessage("Event has been created!");
             return RedirectToAction("TimelineView", new { id = model.TimelineId }); //returns to the Index!
 
         }
@@ -337,7 +346,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
-
+            _toastNotification.AddWarningToastMessage("Event has been deleted!");
             return RedirectToAction("TimelineView", new { id = TimelineId }); //returns to the TimlineView!
         }
         #endregion
@@ -396,7 +405,7 @@ namespace IP3Project.Controllers
         public PartialViewResult UploadAttachmentView(string Id)
         {
 
-            CreateAttachment model = new CreateAttachment(Id);
+            CreateAttachmentViewModel model = new CreateAttachmentViewModel(Id);
             model.TimelineEventId = Id;
             return PartialView("_UploadAttachment", model);
         }
@@ -407,14 +416,14 @@ namespace IP3Project.Controllers
         /// Calls the API to Link Events to an Timeline
         /// </summary>
         /// <param name="EventToLink">CreateEventview of the evnt to be linked</param>
-        private void Link(CreateEventView EventToLink)
+        private void Link(CreateEventViewModel EventToLink)
         {
 
             TimelineEventLink LinkToCreate = new TimelineEventLink(EventToLink.TimelineId, EventToLink.TimelineEventId); //Creates model for serlization
 
             var request = new RestRequest("/Timeline/LinkEvent");
 
-            if(!API.PutRequest(request, LinkToCreate).Equals("OK")) //Error Handling
+            if(!PutRequest(request, LinkToCreate).Equals("OK")) //Error Handling
             {
 
                 throw new System.ArgumentException("Parameter cannot be null", "original");
@@ -435,7 +444,7 @@ namespace IP3Project.Controllers
             var request = new RestRequest("Timeline/GetTimeline"); //setting up the request params
             request.AddHeader("TimelineId", model.Id);
 
-            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+            IRestResponse response = GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
             try
             {
                 model = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
@@ -454,10 +463,10 @@ namespace IP3Project.Controllers
         /// </summary>
         /// <param name="Id">string Id of timeline for event to be retreived</param>
         /// <returns></returns>
-        private EventList GetEvents(string Id)
+        private EventListViewModel GetEvents(string Id)
         {
-            EventList model = new EventList(); //set models
-            TimelineList resultsDTO = new TimelineList();
+            EventListViewModel model = new EventListViewModel(); //set models
+            TimelineListViewModel resultsDTO = new TimelineListViewModel();
 
             resultsDTO = GetSystemData(); //Gets entire system data 
 
@@ -488,7 +497,7 @@ namespace IP3Project.Controllers
             DeleteEventViewModel delete = new DeleteEventViewModel(Id);
             var request = new RestRequest("TimelineEvent/Delete");
 
-            if (!API.PutRequest(request, delete).Equals("OK")) //Error Handling
+            if (!PutRequest(request, delete).Equals("OK")) //Error Handling
             {
                 throw new System.ArgumentException("Parameter cannot be null", "original");
             }
@@ -507,7 +516,7 @@ namespace IP3Project.Controllers
             var request = new RestRequest("TimelineEvent/GetTimelineEvent"); //setting up the request params
             request.AddHeader("TimelineEventId", Id);
 
-            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+            IRestResponse response = GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
 
             var model = JsonConvert.DeserializeObject<Event>(response.Content); //Deserializes the results from the response
 
@@ -532,10 +541,15 @@ namespace IP3Project.Controllers
             var request = new RestRequest("TimelineEventAttachment/GetAttachments"); //setting up the request params
             request.AddHeader("TimelineEventId", Id);
 
-            IRestResponse response = API.GetRequest(request); //API call
+            IRestResponse response = GetRequest(request); //API call
 
-            var model = JsonConvert.DeserializeObject<List<Attachment>>(response.Content);
+            var temp = JsonConvert.DeserializeObject<List<AttachmentViewModel>>(response.Content);
+            List<Attachment> model = new List<Attachment>();
 
+            foreach(AttachmentViewModel y in temp)
+            {
+                model.Add(new Attachment(y.Id, y.Title, y.TimelineEventId));
+            }
             return model;
         }
 
@@ -546,10 +560,10 @@ namespace IP3Project.Controllers
         /// <param name="EventId">String Id of event to be unlinked</param>
         private void UnlinkEvent(string TimelineId, string EventId)
         {
-            var request = new RestRequest("Timeline/UnlinkEvents");
+            var request = new RestRequest("Timeline/UnlinkEvent");
             TimelineEventLink Unlink = new TimelineEventLink(TimelineId, EventId); //sets model for serlization
 
-            if(!API.PutRequest(request, Unlink).Equals("OK"))
+            if(!PutRequest(request, Unlink).Equals("OK"))
             {
                 throw new System.ArgumentException("Parameter cannot be null", "original");
             }
@@ -559,8 +573,8 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Creates a new event by calling the API
         /// </summary>
-        /// <param name="EventToCreate">CreateEventView of event to be created</param>
-        private void Create(CreateEventView EventToCreate)
+        /// <param name="EventToCreate">CreateEventViewModel of event to be created</param>
+        private void Create(CreateEventViewModel EventToCreate)
         {
             var request = new RestRequest("TimelineEvent/Create");
 
@@ -579,7 +593,7 @@ namespace IP3Project.Controllers
                 EventToCreate.Title = null;
             }
 
-            if(!API.PutRequest(request, EventToCreate).Equals("OK"))
+            if(!PutRequest(request, EventToCreate).Equals("OK"))
             {
                 throw new System.ArgumentException("Parameter cannot be null", "original");
 

@@ -47,7 +47,7 @@
     <div class="container body-content">
         @RenderBody()
     </div>
-    
+
     <footer>
         <hr />
         <p>AyrTek Systems &copy; 2018</p>
@@ -80,7 +80,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
-
+    @await Component.InvokeAsync("NToastNotify")
 </body>
 
 </html>

@@ -5,7 +5,9 @@ using System.Linq;
 using IP3Project.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using NToastNotify;
 using RestSharp;
 using X.PagedList;
 
@@ -25,6 +27,17 @@ namespace IP3Project.Controllers
     /// </summary>
     public class TimelineController : BaseController
     {
+        private IToastNotification _toastNotification;
+
+
+        //Dependency  injection and Consructor
+        public TimelineController(IOptions<AppSettings> appSettings, IToastNotification toastNotification) : base(appSettings)
+        {
+            _toastNotification = toastNotification;
+        }
+
+
+
         /// <summary>
         /// Contains the logic for prosessing and returning the Timeline Register and its sorting.
         /// </summary>
@@ -40,7 +53,7 @@ namespace IP3Project.Controllers
             ViewData["CurrentFilter"] = searchString;
 
             //Attempting to get the timelines to be displayed
-            TimelineList model = new TimelineList();
+            TimelineListViewModel model = new TimelineListViewModel();
             try
             {
                 model = GetAllTimelines(model);
@@ -58,8 +71,8 @@ namespace IP3Project.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                results = results.Where(s => s.Title.Contains(searchString)
-                                       || s.CreationTimeStamp.ToString().Contains(searchString));
+                results = results.Where(s => s.Title.ToLower().Contains(searchString.ToLower())
+                                       || (s.GetDateTime().ToString()).Contains(searchString));
             }
 
             //Switch for sorting the data in perticular order by user determined
@@ -115,6 +128,8 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
+
+            _toastNotification.AddSuccessToastMessage("Timeline has been created!");
             return RedirectToAction("Timelines"); //returns to the Index!
 
         }
@@ -139,7 +154,8 @@ namespace IP3Project.Controllers
                 model = GetTimeline(model);
             }
             catch{
-                ViewData["message"] = "This error was generated on communicating with the API. Please contact your system support.";
+                ViewData["message"] = "This error was generated on communicating with the  Please contact your system support.";
+                _toastNotification.AddErrorToastMessage("API Error!");
                 return PartialView("_Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
 
@@ -161,7 +177,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
-
+            _toastNotification.AddInfoToastMessage("Timeline has edited!");
             return RedirectToAction("Timelines"); //returns to the Index!
 
         }
@@ -179,6 +195,7 @@ namespace IP3Project.Controllers
             {
                 return RedirectToAction("APIError");
             }
+            _toastNotification.AddWarningToastMessage("Timeline has deleted!");
             return RedirectToAction("Timelines"); //returns to the Index!
 
         }
@@ -190,13 +207,13 @@ namespace IP3Project.Controllers
         /// <summary>
         /// Makes a request to the API and returns a populated view model with all Timelines 
         /// </summary>
-        /// <param name="model">TimelineList viewmodel to be populated with a list of Timelines</param>
-        /// <returns>Populated TimelineList viewmodel</returns>
-        private TimelineList GetAllTimelines(TimelineList model)
+        /// <param name="model">TimelineListViewModel viewmodel to be populated with a list of Timelines</param>
+        /// <returns>Populated TimelineListViewModel viewmodel</returns>
+        private TimelineListViewModel GetAllTimelines(TimelineListViewModel model)
         {
 
             var request = new RestRequest("Timeline/GetTimelines"); //setting up the request params
-            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+            IRestResponse response = GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
 
                 var resultsDTO = JsonConvert.DeserializeObject<List<Timeline>>(response.Content); //Deserializes the results from the response
                 //Populates the viewmodel with relevent results
@@ -222,7 +239,7 @@ namespace IP3Project.Controllers
             var request = new RestRequest("Timeline/GetTimeline"); //setting up the request params
             request.AddHeader("TimelineId",model.TimelineId);
 
-            IRestResponse response = API.GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
+            IRestResponse response = GetRequest(request); //Uses IdeagenAPI wrapperclass to make a request and retreives the response
                 var resultsDTO = JsonConvert.DeserializeObject<Timeline>(response.Content); //Deserializes the results from the response
                 model.TimelineId = resultsDTO.Id;
                 model.Title = resultsDTO.Title;
@@ -245,7 +262,7 @@ namespace IP3Project.Controllers
 
             DeleteModel.TimelineId = Id; //Sets the ID of the timeline to be deleted
 
-            var success = API.PutRequest(request, DeleteModel); //Calls API to do request and gets response content from it
+            var success = PutRequest(request, DeleteModel); //Calls API to do request and gets response content from it
 
             return success.ToString();
 
@@ -264,7 +281,7 @@ namespace IP3Project.Controllers
 
             model.TimelineId = Guid.NewGuid().ToString();
 
-            var success = API.PutRequest(request, model);
+            var success = PutRequest(request, model);
 
             return success.ToString();
 
@@ -282,7 +299,7 @@ namespace IP3Project.Controllers
 
             var request = new RestRequest("Timeline/EditTitle");
 
-            var success = API.PutRequest(request, model);
+            var success = PutRequest(request, model);
 
             return success.ToString();
 
