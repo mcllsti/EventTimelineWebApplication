@@ -1,0 +1,11 @@
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\bin\Release\netcoreapp2.0\IP3Project.deps.json
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\bin\Release\netcoreapp2.0\IP3Project.runtimeconfig.json
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\bin\Release\netcoreapp2.0\IP3Project.runtimeconfig.dev.json
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\bin\Release\netcoreapp2.0\IP3Project.dll
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\bin\Release\netcoreapp2.0\IP3Project.pdb
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\obj\Release\netcoreapp2.0\IP3Project.csprojResolveAssemblyReference.cache
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\obj\Release\netcoreapp2.0\IP3Project.csproj.CoreCompileInputs.cache
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\obj\Release\netcoreapp2.0\IP3Project.AssemblyInfoInputs.cache
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\obj\Release\netcoreapp2.0\IP3Project.AssemblyInfo.cs
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\obj\Release\netcoreapp2.0\IP3Project.dll
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\obj\Release\netcoreapp2.0\IP3Project.pdb

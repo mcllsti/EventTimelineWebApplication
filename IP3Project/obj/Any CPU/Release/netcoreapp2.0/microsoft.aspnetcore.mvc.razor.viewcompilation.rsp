@@ -1,0 +1,25 @@
+C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project
+--output-path=obj\Any CPU\Release\netcoreapp2.0\
+--application-name=IP3Project
+--content-root=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\TimelineView.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_CreateEvent.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_DynamicTimeline.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_EditDate.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_EditDescription.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_EditLocation.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_EditTitle.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_EventView.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Event\_UploadAttachment.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Home\About.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Home\Help.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Home\Index.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Shared\Error.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Shared\_Error.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Shared\_Layout.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Timeline\Timelines.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Timeline\_CreateEditTimeline.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\Timeline\_TimelineRegister.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\_ViewImports.cshtml
+--file=C:\Users\GaMac\OneDrive\GCU\IntigratedProject\ProjectFiles\ip3project\IP3Project\Views\_ViewStart.cshtml

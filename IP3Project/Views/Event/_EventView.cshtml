@@ -51,13 +51,17 @@
             <h4>Click on a file name to download the attachment</h4>
             foreach (var x in Model.Attachments)
             {
-            <div class="attachment-file">
-                <div class="file-thumbnail">
-                    <!--If we can figure out thumbnails for files, we would put it here-->
-                    <div class="glyphicon glyphicon-file"></div>
+            <div class="file-wrapper">
+                <div class="attachment-file">
+                    <div class="file-thumbnail">
+                        <!--If we can figure out thumbnails for files, we would put it here-->
+                        <div class="glyphicon glyphicon-file"></div>
+                    </div>
+                    @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title })
                 </div>
-                @Html.ActionLink(x.Title, "DownloadAttachment", "Attachment", new { fileName = x.Title }) @Html.ActionLink("", "DeleteAttachment", "Attachment", new { Id = x.AttachmentId, EventId = Model.Id }, new { @class = "glyphicon glyphicon-trash" })
+                @Html.ActionLink(" ", "DeleteAttachment", "Attachment", new { Id = x.AttachmentId, EventId = Model.Id }, new { @class = "glyphicon glyphicon-trash" })
             </div>
+
             }
             <hr />
         }

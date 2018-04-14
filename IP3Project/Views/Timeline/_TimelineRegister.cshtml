@@ -5,7 +5,6 @@
 <div class="timelineRegister">
     <!--<div class="row h-100 justify-content-center align-items-center">-->
     <br />
-
     <form asp-action="Timelines" method="get">
         <div class="form-actions">
             <p>
@@ -31,28 +30,27 @@
 
             <tbody>
                 @foreach (var x in ViewBag.OnePageOfProducts)
-            {
+                {
 
-                <tr class="clickable-tr">
-                    <!--The entire <tr> needs to be made clickable so we can go to the timeline, can do this with jQuery/JS.-->
-                    <td>@Html.ActionLink((string)x.Title, "TimelineView", "Event", new { Id = x.Id }, null)</td>
-                    <td> @x.GetDateTime().ToString("g")</td>
-                    <td class="text-right">
-                        <div class="dropdown">
-                            <div class="dropbtn glyphicon glyphicon-cog"></div>
-                            <div class="dropdown-content">
-                                @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id, Title = x.Title }, new { @class = "modal-link" })
-                                <b> @Html.ActionLink("Delete", "Delete", new { Id = x.Id }, new { onclick = "return confirm('Are you sure you wish to delete this Event?');" })</b>
+                    <tr class="clickable-tr">
+                        <!--The entire <tr> needs to be made clickable so we can go to the timeline, can do this with jQuery/JS.-->
+                        <td>@Html.ActionLink((string)x.Title, "TimelineView", "Event", new { Id = x.Id }, null)</td>
+                        <td> @x.GetDateTime().ToString("g")</td>
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <div class="dropbtn glyphicon glyphicon-cog"></div>
+                                <div class="dropdown-content">
+                                    @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id, Title = x.Title }, new { @class = "modal-link" })
+                                    <b> @Html.ActionLink("Delete", "Delete", new { Id = x.Id }, new { onclick = "return confirm('Are you sure you wish to delete this Event?');" })</b>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-        }
-
-
+                        </td>
+                    </tr>
+                }
 
             </tbody>
         </table>
+
 
 
 
