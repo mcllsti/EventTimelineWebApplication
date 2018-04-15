@@ -1,10 +1,9 @@
-﻿
+﻿/*General page overwrites*/
 html, body {
     height: 100%;
     margin: 0px;
     padding-bottom: 60px
 }
-
 
 body {
     padding-top: 50px;
@@ -21,9 +20,20 @@ footer {
     text-align: center;
     bottom: 0;
     width: 100%;
-    height: 50px; /* Height of the footer */
+    height: 50px;
     background: #ffffff;
     font-size: 8pt;
+}
+
+.form-group-wrapping{
+    width: 100%;
+    height: auto;
+    padding: 5px;
+}
+
+textarea{
+    width: auto;
+    resize: vertical;
 }
 
 /*======= Help Page ========*/
@@ -300,7 +310,7 @@ footer {
 
 .modal-content {
     top: 10%;
-    width: 50%;
+    width: 60%;
     height: auto;
     overflow: hidden;
     padding: 20px 50px 20px 20px;
@@ -312,8 +322,9 @@ footer {
 
 @media only screen and (max-width: 600px) {
     .modal-content {
-        width: 75%;
+        width: 90%;
     }
+
 }
 
 
