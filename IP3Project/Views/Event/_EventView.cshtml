@@ -7,10 +7,10 @@
 
 <div class="event-view-box">
 
-    <h1>@Html.DisplayFor(model => model.Title) @Html.ActionLink("", "EditTitle", new { Id = Model.Id, Title = Model.Title }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h1>
+    <h1>@Html.DisplayFor(model => model.Title)@Html.ActionLink("", "EditTitle", new { Id = Model.Id, Title = Model.Title }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h1>
     <hr />
 
-    <div>
+    <div class="model-display-wrapper">
         <h3>Date/Time: @Html.ActionLink("", "EditDate", new { Id = Model.Id, Date = Model.EventDateTime }, new { @class = "modal-link glyphicon glyphicon-edit crud-icon" })</h3>
         @Model.GetDateTime(Model.EventDateTime).ToString("g")
 
@@ -30,8 +30,7 @@
         }
     </h3>
 
-    <br />
-    @Html.DisplayFor(model => model.Location)
+    <span class="model-display-wrapper">@Html.DisplayFor(model => model.Location)</span>
 
     @{if (Model.Location != null)
         { <div id="mapDisplay"></div>} }
