@@ -4,7 +4,7 @@
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
+<h1 class="text-danger">Error</h1>
 <h4 class="text-danger">An error occurred while processing your request.</h4>
 
 @if (Model.ShowRequestId)
@@ -14,8 +14,9 @@
     </p>
 }
 
+    <img src="~/images/IdeaGenBanner.png" alt="IdeaGen" class="about-page-img" />
 <h1>@ViewData["Message"]</h1>
 
-@Html.ActionLink("Forward to the help page", "Help", "Home", null, new { @class = "btn btn-primary btn-lg" })
-@Html.ActionLink("Back to the Timeline registier", "Timelines", "Timeline", null, new { @class = "btn btn-primary btn-lg" })
+@Html.ActionLink("Help Page", "Help", "Home", null, new { @class = "btn btn-primary btn-large" })
+@Html.ActionLink("Attempt to go back to the Timeline register", "Timelines", "Timeline", null, new { @class = "btn btn-default btn-large" })
 
