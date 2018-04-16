@@ -3,16 +3,18 @@
     height: 400px;
     margin: 0 auto;
     position: relative;
+    overflow: hidden;
 }
 
 #line {
     width: 0px;
     height: 5px;
     background: #0073cc;
-    position: absolute;
     z-index: 2;
-    top: 150px;
+    top: 145px;
+    left: 0px;
     transition: 0.2s;
+    position: absolute;
 }
 
 .timeline-area {

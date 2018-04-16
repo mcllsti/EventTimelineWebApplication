@@ -29,21 +29,29 @@ $(document).ready(function () {
             matchedPara = $(paras).eq(ind);
 
         // CALCULATE OFFSET FROM WINDOW
-        var position = $(this).position();
-
+        var position = $(this).after().position();
+        var wrapperLeft = $('.timeline-wrapper').offset().left;
+        
 
         // CHANGE THE WIDTH OF THE LINE TO MATCH OFFSET
-        $("#line").css('width', position.left + 50);
+        $("#line")
+            .css({
+                'width': position.left +50
+            });
+
 
 
         // FIND ANY EXISTING ACTIVE AND REMOVE
+        $('.timeline-wrapper').find('.event').removeClass('prev-event');
         $('.timeline-wrapper').find('.active-event').removeClass('active-event');
+        
 
         // ADD THE CLASS
         $(this).addClass("active-event");
 
         // MARK PREVIOUS EVENTS
         $(this).prevAll(".event").addClass("prev-event");
+
 
 
         //---Ajax load event---

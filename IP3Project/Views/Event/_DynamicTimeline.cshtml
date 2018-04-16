@@ -32,20 +32,21 @@ else
     <div class="timeline-wrapper">
 
         <div class="timeline-ruler"></div>
-        <div id="line"></div>
-        <div class="timeline-area">
+        
 
+        <div class="timeline-area"> 
             @foreach (var x in Model.TimelineEvents)
             {
-
-                <div class="event" id="@x.Id">
-                    <div class="event-content">
-                        <h4>@x.Title</h4>
-                    </div>
-                    <div class="event-date">
-                        <h4>@x.GetDateTime(x.EventDateTime).ToString("g")</h4>
-                    </div>
+            <div id="line"></div>
+            <div class="event" id="@x.Id">
+                
+                <div class="event-content">
+                    <h4>@x.Title</h4>
                 </div>
+                <div class="event-date">
+                    <h4>@x.GetDateTime(x.EventDateTime).ToString("g")</h4>
+                </div>
+            </div>
 
             }
         </div>
