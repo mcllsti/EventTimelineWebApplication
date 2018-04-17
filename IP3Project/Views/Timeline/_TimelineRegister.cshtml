@@ -40,7 +40,7 @@
                                 <div class="dropbtn glyphicon glyphicon-cog"></div>
                                 <div class="dropdown-content">
                                     @Html.ActionLink("Edit", "Edit", "Timeline", new { Id = x.Id, Title = x.Title }, new { @class = "modal-link" })
-                                    <b> @Html.ActionLink("Delete", "Delete", new { Id = x.Id }, new { onclick = "return confirm('Are you sure you wish to delete this Event?');" })</b>
+                                    <b> @Html.ActionLink("Delete", "Delete", new { Id = x.Id }, new { onclick = "return confirm('Are you sure you wish to delete this Timeline?');" })</b>
                                 </div>
                             </div>
                         </td>
