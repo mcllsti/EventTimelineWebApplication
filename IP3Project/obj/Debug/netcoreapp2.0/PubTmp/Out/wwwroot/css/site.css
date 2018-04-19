@@ -1,0 +1,593 @@
+﻿/*General page overwrites*/
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding-bottom: 60px
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 25px;
+}
+
+hr {
+    border-color:#000000;
+    opacity: 0.125;
+}
+
+footer {
+    margin-top: 100px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: #ffffff;
+    font-size: 8pt;
+}
+
+.form-group-wrapping{
+    width: 100%;
+    height: auto;
+    padding: 5px;
+}
+
+textarea{
+    width: auto;
+    resize: vertical;
+    overflow: auto;
+}
+
+/*======= Help Page ========*/
+/*==========================*/
+.help-page-content{
+    font-size: 16pt;
+}
+
+.help-page-content section {
+    margin: 10px 0 10px;
+    padding: 10px 0 10px;
+}
+
+.help-page-content img {
+    max-width: 20vh;
+    height: auto;
+}
+/*====== End of Help Page ======*/
+
+/*======= About Page ========*/
+/*===========================*/
+
+.about-page-img{
+    max-width: 50%;
+    height: auto;
+}
+
+/*====== End of About Page ======*/
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px
+}
+
+/*Page Content*/
+.pageContent {
+    text-align: center;
+    font-size: 16pt;
+    padding: 10px;
+}
+
+.popup-window {
+    width: 50%;
+    height: auto;
+
+}
+
+
+/*======= Navbar ========*/
+/*=======================*/
+
+.navbar {
+    background-color: #f6f6f6;
+    /*box-shadow: 0px 2px 5px #cacaca;*/
+    border-bottom: 1px solid #c1c1c1;
+    padding: 5px 0 5px;
+    text-align: center;
+}
+
+.navbar ul {
+    display: inline-block;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #8b8b8b;
+    padding-left: 20px;
+}
+
+    .navbar li a {
+        color: #8b8b8b;
+    }
+
+        .navbar li a:hover {
+            color: #0073cc;
+        }
+
+.logoImg {
+    padding-top: 5px;
+    width: 40px;
+    height: auto;
+    display: inline-block;
+    align-content: center;
+    transition: 0.5s;
+}
+
+    .logoImg:hover {
+        opacity: 0.5;
+    }
+
+/*======= End of Navbar ========*/
+
+
+/*======= Timeline Register ========*/
+/*==================================*/
+
+.timeline-register-box {
+    width: 100%;
+    height: auto;
+    font-size: 1.2em;
+    margin: 0;
+    background-color: #f6f6f6;
+    box-shadow: #c6c6c6 0 0 10px;
+    padding: 30px 75px 100px;
+    border-radius: 15px;
+    overflow: scroll;
+}
+
+.timelineRegister {
+    margin: auto;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+
+.timeline-register-emptycase {
+    padding: 25px;
+    cursor: pointer;
+}
+
+.text-right {
+    text-align-last: right;
+}
+
+
+.table-hover {
+    border-collapse: separate;
+    border-spacing: 0px 20px;
+}
+
+    .table-hover th {
+        border-top: none;
+        font-size: 20pt;
+        color: #000000;
+    }
+
+    .table-hover tr {
+        transition: 0.5s;
+    }
+
+    .table-hover tbody tr {
+        padding: 10px 5px 10px;
+    }
+
+    .table-hover tbody td:first-child {
+        border-left-style: none;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding-left: 20px;
+    }
+
+    .table-hover tbody td:last-child {
+        border-left-style: none;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .table-hover td {
+        padding: 5px;
+    }
+
+        .table-hover td a {
+            color: #000000;
+        }
+
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 115, 204, 0.9);
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.table-hover tbody tr:hover a{
+    color: #ffffff;
+    transition: 0.5s;
+}
+
+    .table-hover th:hover a {
+        color: #23aa94;
+        transition: 0.5s;
+    }
+
+
+
+/*======= End of Timeline Register ========*/
+
+
+/*======= Event Viewer ========*/
+/*=============================*/
+.event-view-box {
+    width: 100%;
+    height: auto;
+    font-size: 1.2em;
+    margin: 0;
+    background-color: #f6f6f6;
+    box-shadow: #23aa94 0 0 10px;
+    padding: 30px 75px 100px;
+    text-align: left;
+    border-radius: 15px;
+}
+
+
+.crud-icon{
+    color: #000000;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    padding: 5px;
+}
+
+.crud-icon:hover{
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+.model-display-wrapper{
+    width: 100%;
+    height: auto;
+    word-wrap: break-word;
+}
+
+.loader-img {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    display: none;
+}
+
+/*======= End of Event Viewer ========*/
+
+/*======= Landing Page ========*/
+/*=============================*/
+.pageHeading {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%);
+}
+
+#heroImg {
+    top: 0;
+    background-image: url("/images/heroImage2.jpg");
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.bannerImg {
+    width: 75vh;
+    height: auto;
+}
+
+.airtek-banner-img {
+    width: 25vh;
+    height: auto;
+}
+/*======= End of Landing Page ========*/
+
+
+
+
+
+.modal-content {
+    top: 10%;
+    width: 60%;
+    height: auto;
+    overflow: hidden;
+    padding: 20px 50px 20px 20px;
+    margin: auto;
+    background-color: #fff;
+    position: center;
+    outline: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+    }
+
+}
+
+
+
+/* Dropdown Button */
+.dropbtn {
+    padding: 4px;
+    font-size: 16px;
+    border: none;
+    background-color: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: -100px;
+    text-align-last: left !important;
+    width: 150px;
+    height: auto;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        width: 100%;
+        color: #000000 !important;
+        padding: 15px 20px;
+        text-decoration: none;
+        display: inline-block;
+        text-align: left;
+        left: 0;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd
+        }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    opacity: 0.7;
+}
+
+.create-form {
+    text-align: center;
+    align-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    margin: 10px 0 10px;
+}
+
+#mapDisplay {
+    width: 100%;
+    height: 400px;
+    margin: 10px 0 10px;
+}
+
+/*======= PAC ================*/
+/*============================*/
+
+.pac-container {
+    z-index: 1051 !important;
+}
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+}
+
+#pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+}
+
+.pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+}
+
+    .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+
+.pagination-container {
+    text-align: center;
+    bottom: 0;
+    margin-bottom: 0;
+}
+/*========== END OF PAC ============*/
+
+
+/*======= ATTACHMENTS ========*/
+/*============================*/
+.attachment-box {
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+    background-color: #e8e8e8;
+    border: 1px solid #cacaca;
+    display: block;
+    border-radius: 15px;
+}
+
+
+.file-wrapper {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    padding: 5px 0 5px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.file-wrapper a {
+    opacity: 0.5;
+    color: #000000;
+}
+
+    .file-wrapper a:hover {
+        opacity: 0.75;
+        color: #d9534f;
+    }
+
+.file-wrapper:hover{
+    background-color: rgba(255, 255, 255, 0.50);
+}
+
+.attachment-file {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    display: inline-block;
+    top: 0;
+    word-wrap: break-word;
+    margin-bottom:5px;
+    padding-bottom: 5px;
+}
+
+    .attachment-file a {
+        color: #0073cc;
+        opacity: 1;
+    }
+
+        .attachment-file a:hover {
+            color: #23aa94;
+            opacity: 1;
+        }
+
+.file-thumbnail {
+    width: 75px;
+    height: 50px;
+    display: inline-block;
+    text-align: center;
+    font-size: 32pt;
+}
+
+/*============================*/
+
+
+/*======= EMPTY CASE BTN ========*/
+/*===============================*/
+.btn-empty-case-add {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    padding: 5px 0 0;
+    font-size: 64px;
+    background-color: #0073cc;
+    border-radius: 100%;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.btn-empty-case-add a {
+    color: #ffffff;
+    text-decoration:none;
+}
+
+    .btn-empty-case-add:hover {
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        border: 1px solid #000000;
+        text-align: center;
+        vertical-align: middle;
+        color: #0073cc;
+        transform: scale(1.1);
+        text-decoration: none;
+        box-shadow: #d4d4d4 0px 0px 20px;
+    }
+/*============================*/
+
+/*======= DANGER ZONE ========*/
+/*============================*/
+
+.danger-zone {
+    margin: 100px 0 0;
+    width: 100%;
+    height: auto;
+    border: 2px solid #d9534f;
+    padding: 20px 10% 20px;
+    text-align: center;
+}
+
+    .danger-zone h3 {
+        width: 200px;
+        height: auto;
+        margin-top: -30px;
+        margin-left: 0px;
+        background-color: #f6f6f6;
+        text-align: center;
+        color: #d9534f;
+        font-weight: bold;
+        font-size: 16px;
+    }
+/*============================*/

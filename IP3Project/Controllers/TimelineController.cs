@@ -48,7 +48,7 @@ namespace IP3Project.Controllers
         public IActionResult Timelines(string sortOrder, string searchString, int? page)
         {
             //Setting Viewdata
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "name";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["CurrentFilter"] = searchString;
 
@@ -95,7 +95,7 @@ namespace IP3Project.Controllers
 
             //Variable set up for return to view
             var pagenumber = page ?? 1;
-            var onepage = results.ToPagedList(pagenumber, 5);
+            var onepage = results.ToPagedList(pagenumber, 10);
             ViewBag.OnePageOfProducts = onepage;
 
             return View();
